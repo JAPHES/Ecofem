@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Contact EcoFem{% endblock %}
+{% block meta_description %}Contact EcoFem about research collaboration, partnerships, pilot programs, community outreach or general project enquiries.{% endblock %}
+
+{% block content %}
+{% include "includes/page_header.html" with eyebrow="Contact EcoFem" heading="Let's start a meaningful conversation." intro="Tell us how you would like to connect, collaborate or learn more about the EcoFem project." %}
+
+<section class="section pt-0 contact-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <div class="contact-intro reveal"><span class="eyebrow">Get in touch</span><h2>We welcome thoughtful collaboration.</h2><p>EcoFem is open to conversations with researchers, institutions, schools, NGOs, health programs, manufacturers and community organisations.</p><div class="contact-details"><div><i class="bi bi-envelope"></i><span><small>Email</small>{% if ecofem_settings.email %}<a href="mailto:{{ ecofem_settings.email }}">{{ ecofem_settings.email }}</a>{% else %}<strong>Email to be confirmed</strong>{% endif %}</span></div><div><i class="bi bi-geo-alt"></i><span><small>Location</small><strong>{% if ecofem_settings %}{{ ecofem_settings.location }}{% else %}Location to be confirmed{% endif %}</strong></span></div>{% if ecofem_settings.phone %}<div><i class="bi bi-telephone"></i><span><small>Phone</small><a href="tel:{{ ecofem_settings.phone }}">{{ ecofem_settings.phone }}</a></span></div>{% endif %}</div></div>
+                <div class="collaboration-list reveal"><h3>Ways to work together</h3><div><span>Research collaboration</span><span>Institutional partnerships</span><span>Pilot programs</span><span>Schools & health programs</span><span>Manufacturing partnerships</span><span>Community outreach</span></div></div>
+            </div>
+            <div class="col-lg-7">
+                <div class="contact-form-card reveal">
+                    <span class="eyebrow">Send a message</span><h2>How can we help?</h2><p class="mb-4">Fields marked with * are required.</p>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+                        <div class="row g-3">
+                            {% for field in form %}
+                                <div class="{% if field.name == 'message' %}col-12{% else %}col-md-6{% endif %}">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+                                    {{ field }}
+                                    {% for error in field.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+                                </div>
+                            {% endfor %}
+                            <div class="col-12"><button type="submit" class="btn btn-brand btn-lg w-100">Send message <i class="bi bi-send ms-2"></i></button><p class="form-privacy"><i class="bi bi-lock"></i>Your message is stored securely for the EcoFem team to review. No visitor account is created.</p></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
