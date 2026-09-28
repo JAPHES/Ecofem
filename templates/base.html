@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}EcoFem{% endblock %} | Sustainable menstrual care</title>
+    <meta name="description" content="{% block meta_description %}EcoFem is developing affordable, biodegradable sanitary pads using processed water hyacinth fibres.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}EcoFem | Sustainable Menstrual Care, Naturally{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Menstrual health innovation meets environmental sustainability.{% endblock %}">
+    <meta property="og:image" content="{% static 'images/ecofem-hero.png' %}">
+    <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" aria-label="Main navigation">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'ecofem:home' %}" aria-label="EcoFem home">
+                <span class="brand-mark" aria-hidden="true"><i class="bi bi-flower1"></i></span>
+                <span>Eco<span>Fem</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavigation">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'ecofem:home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'ecofem:about' %}">About</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'innovation' %}active{% endif %}" href="{% url 'ecofem:innovation' %}">Innovation</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'impact' %}active{% endif %}" href="{% url 'ecofem:impact' %}">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'team_list' or request.resolver_match.url_name == 'team_detail' %}active{% endif %}" href="{% url 'ecofem:team_list' %}">Team</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'update_list' or request.resolver_match.url_name == 'update_detail' %}active{% endif %}" href="{% url 'ecofem:update_list' %}">Updates</a></li>
+                    <li class="nav-item ms-lg-2"><a class="btn btn-brand btn-sm px-4" href="{% url 'ecofem:contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="message-wrap container" aria-live="polite">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-lg-5">
+                    <a class="footer-brand d-inline-flex align-items-center gap-2 mb-3" href="{% url 'ecofem:home' %}">
+                        <span class="brand-mark brand-mark-light" aria-hidden="true"><i class="bi bi-flower1"></i></span>
+                        <span>EcoFem</span>
+                    </a>
+                    <p class="footer-intro">{% if ecofem_settings %}{{ ecofem_settings.short_description }}{% else %}Developing affordable, biodegradable sanitary pads using processed water hyacinth fibres.{% endif %}</p>
+                    <p class="development-note"><i class="bi bi-info-circle me-2"></i>EcoFem is under development and preparing for further validation and certification.</p>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1">
+                    <h2 class="footer-heading">Explore</h2>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="{% url 'ecofem:about' %}">About</a></li>
+                        <li><a href="{% url 'ecofem:innovation' %}">Innovation</a></li>
+                        <li><a href="{% url 'ecofem:impact' %}">Impact</a></li>
+                        <li><a href="{% url 'ecofem:update_list' %}">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h2 class="footer-heading">Connect</h2>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="{% url 'ecofem:team_list' %}">Our Team</a></li>
+                        <li><a href="{% url 'ecofem:contact' %}">Partner with us</a></li>
+                        <li><a href="{% url 'ecofem:contact' %}">Contact</a></li>
+                        <li><a href="{% url 'ecofem:innovation' %}#testing">Testing approach</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h2 class="footer-heading">Contact</h2>
+                    <ul class="footer-links list-unstyled">
+                        <li><i class="bi bi-envelope me-2"></i>{% if ecofem_settings and ecofem_settings.email %}<a href="mailto:{{ ecofem_settings.email }}">{{ ecofem_settings.email }}</a>{% else %}<span>Email to be confirmed</span>{% endif %}</li>
+                        <li><i class="bi bi-geo-alt me-2"></i>{% if ecofem_settings %}{{ ecofem_settings.location }}{% else %}Location to be confirmed{% endif %}</li>
+                    </ul>
+                    <div class="social-links mt-3" aria-label="Social media links">
+                        {% if ecofem_settings.linkedin_url %}<a href="{{ ecofem_settings.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>{% endif %}
+                        {% if ecofem_settings.instagram_url %}<a href="{{ ecofem_settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>{% endif %}
+                        {% if ecofem_settings.facebook_url %}<a href="{{ ecofem_settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>{% endif %}
+                        {% if not ecofem_settings or not ecofem_settings.linkedin_url and not ecofem_settings.instagram_url and not ecofem_settings.facebook_url %}
+                            <span class="social-placeholder" title="LinkedIn link to be confirmed"><i class="bi bi-linkedin"></i></span>
+                            <span class="social-placeholder" title="Instagram link to be confirmed"><i class="bi bi-instagram"></i></span>
+                            <span class="social-placeholder" title="Facebook link to be confirmed"><i class="bi bi-facebook"></i></span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between gap-2">
+                <span>&copy; {% now "Y" %} EcoFem. All rights reserved.</span>
+                <span>Menstrual dignity · Circular innovation · Local impact</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
