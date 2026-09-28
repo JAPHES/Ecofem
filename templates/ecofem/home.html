@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block meta_description %}EcoFem is developing affordable, biodegradable sanitary pads from processed water hyacinth fibres—connecting menstrual dignity with circular innovation.{% endblock %}
+
+{% block content %}
+<section class="home-hero">
+    <div class="container">
+        <div class="hero-panel">
+            <img src="{% static 'images/ecofem-hero.png' %}" alt="Woman innovator examining a sanitary pad prototype beside processed plant fibres" class="hero-image">
+            <div class="hero-overlay"></div>
+            <div class="hero-content reveal">
+                <span class="eyebrow eyebrow-light">Menstrual health · Circular materials</span>
+                <h1>Sustainable menstrual care, <em>naturally.</em></h1>
+                <p>EcoFem is developing affordable and biodegradable sanitary pads using water hyacinth fibres—bringing menstrual health innovation and environmental sustainability together.</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="{% url 'ecofem:about' %}" class="btn btn-light btn-lg">Discover EcoFem <i class="bi bi-arrow-right ms-2"></i></a>
+                    <a href="{% url 'ecofem:team_list' %}" class="btn btn-outline-light btn-lg">Meet our team</a>
+                </div>
+                <p class="hero-status"><span></span> Prototype development and validation in progress</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section problem-section">
+    <div class="container">
+        <div class="row align-items-end mb-5 gy-3">
+            <div class="col-lg-7 reveal">
+                <span class="eyebrow">The challenge</span>
+                <h2 class="section-title">Three connected problems. One thoughtful response.</h2>
+            </div>
+            <div class="col-lg-5 reveal">
+                <p class="section-lead">Access, waste and invasive biomass call for solutions that work together—not in isolation.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <article class="problem-card reveal h-100">
+                    <span class="card-number">01</span>
+                    <i class="bi bi-heart-pulse"></i>
+                    <h3>Menstrual access</h3>
+                    <p>Cost and availability can make reliable menstrual hygiene products difficult to access for many women and girls.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="problem-card reveal h-100">
+                    <span class="card-number">02</span>
+                    <i class="bi bi-trash3"></i>
+                    <h3>Persistent waste</h3>
+                    <p>Conventional sanitary products often contain non-biodegradable materials that can remain in the environment long after use.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="problem-card reveal h-100">
+                    <span class="card-number">03</span>
+                    <i class="bi bi-water"></i>
+                    <h3>Invasive biomass</h3>
+                    <p>Water hyacinth can disrupt waterways and livelihoods, yet its fibrous biomass may also hold useful material potential.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section solution-section">
+    <div class="container">
+        <div class="solution-panel">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <div class="image-stack">
+                        <img src="{% static 'images/water-hyacinth-process.png' %}" alt="Water hyacinth stems being sorted beside prepared natural fibres" loading="lazy">
+                        <div class="image-note"><i class="bi bi-arrow-repeat"></i><span>From invasive biomass<br><strong>to useful material</strong></span></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 reveal">
+                    <span class="eyebrow">Our solution</span>
+                    <h2 class="section-title">Reimagining a local resource for menstrual care.</h2>
+                    <p class="section-lead">EcoFem processes water hyacinth fibres for use as part of the absorbent core in a biodegradable sanitary pad prototype.</p>
+                    <p>The product is being designed toward a careful balance of performance, comfort, affordability and reduced environmental impact.</p>
+                    <div class="attribute-list mt-4">
+                        <span><i class="bi bi-check2"></i> Affordable by design</span>
+                        <span><i class="bi bi-check2"></i> Comfortable</span>
+                        <span><i class="bi bi-check2"></i> Absorbent</span>
+                        <span><i class="bi bi-check2"></i> Environmentally conscious</span>
+                        <span><i class="bi bi-check2"></i> Locally developed</span>
+                        <span><i class="bi bi-check2"></i> Resource-efficient</span>
+                    </div>
+                    <a href="{% url 'ecofem:innovation' %}" class="arrow-link mt-4 d-inline-flex">Explore the innovation <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section process-section">
+    <div class="container">
+        <div class="section-heading text-center reveal">
+            <span class="eyebrow">How EcoFem works</span>
+            <h2 class="section-title">A material journey with purpose</h2>
+            <p>Each stage is being refined through research, prototyping and testing.</p>
+        </div>
+        <div class="process-grid">
+            <article class="process-step reveal">
+                <span>01</span><i class="bi bi-flower2"></i><h3>Responsible harvesting</h3><p>Water hyacinth biomass is collected with environmental responsibility in mind.</p>
+            </article>
+            <article class="process-step reveal">
+                <span>02</span><i class="bi bi-scissors"></i><h3>Fibre extraction</h3><p>Useful fibres are separated from the prepared plant material.</p>
+            </article>
+            <article class="process-step reveal">
+                <span>03</span><i class="bi bi-droplet"></i><h3>Fibre treatment</h3><p>Fibres are cleaned and processed for material development.</p>
+            </article>
+            <article class="process-step reveal">
+                <span>04</span><i class="bi bi-layers"></i><h3>Core development</h3><p>Treated fibre is developed as part of an absorbent core structure.</p>
+            </article>
+            <article class="process-step reveal">
+                <span>05</span><i class="bi bi-clipboard2-pulse"></i><h3>Prototype & testing</h3><p>Pad prototypes are assembled, compared, evaluated and improved.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section matters-section">
+    <div class="container">
+        <div class="row mb-5 align-items-end gy-3">
+            <div class="col-lg-7 reveal">
+                <span class="eyebrow">Why EcoFem matters</span>
+                <h2 class="section-title">Designed for dignity and a lighter footprint.</h2>
+            </div>
+            <div class="col-lg-5 reveal"><p class="section-lead">A single innovation can open several pathways for positive change.</p></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3"><article class="impact-card rose h-100 reveal"><i class="bi bi-heart"></i><h3>Menstrual health</h3><p>Aiming to support dignified access to dependable menstrual care.</p></article></div>
+            <div class="col-sm-6 col-lg-3"><article class="impact-card sage h-100 reveal"><i class="bi bi-globe-africa"></i><h3>Environmental protection</h3><p>Exploring a useful pathway for invasive biomass and lower-impact materials.</p></article></div>
+            <div class="col-sm-6 col-lg-3"><article class="impact-card cream h-100 reveal"><i class="bi bi-wallet2"></i><h3>Affordability</h3><p>Designing with accessible pricing and local realities in view.</p></article></div>
+            <div class="col-sm-6 col-lg-3"><article class="impact-card charcoal h-100 reveal"><i class="bi bi-lightbulb"></i><h3>Local innovation</h3><p>Building material knowledge and product capability close to the challenge.</p></article></div>
+        </div>
+    </div>
+</section>
+
+<section class="section progress-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4 reveal">
+                <span class="eyebrow eyebrow-light">Our progress</span>
+                <h2 class="section-title text-white">Building carefully, one stage at a time.</h2>
+                <p>EcoFem is a product under development. Progress means learning, testing and improving before commercialization.</p>
+                <a href="{% url 'ecofem:innovation' %}#testing" class="btn btn-outline-light mt-3">Learn about validation</a>
+            </div>
+            <div class="col-lg-8">
+                <ol class="progress-timeline">
+                    <li class="complete reveal"><span>01</span><div><strong>Concept</strong><small>Problem and opportunity identified</small></div></li>
+                    <li class="complete reveal"><span>02</span><div><strong>Research</strong><small>Material potential explored</small></div></li>
+                    <li class="complete reveal"><span>03</span><div><strong>Prototype development</strong><small>Early product forms developed</small></div></li>
+                    <li class="active reveal"><span>04</span><div><strong>Absorbency testing</strong><small>Performance comparisons and refinement</small></div></li>
+                    <li class="future reveal"><span>05</span><div><strong>Market validation</strong><small>User and stakeholder learning</small></div></li>
+                    <li class="future reveal"><span>06</span><div><strong>Product improvement</strong><small>Iterative material and design work</small></div></li>
+                    <li class="future reveal"><span>07</span><div><strong>Certification preparation</strong><small>Evidence and process readiness</small></div></li>
+                    <li class="future reveal"><span>08</span><div><strong>Commercialization preparation</strong><small>Pilot and scale planning</small></div></li>
+                </ol>
+                <p class="timeline-disclaimer"><i class="bi bi-shield-check me-2"></i>This timeline describes a development pathway and does not indicate final regulatory certification.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if show_statistics %}
+<section class="stats-strip" aria-label="EcoFem at a glance">
+    <div class="container">
+        <div class="row g-4 text-center justify-content-center">
+            {% if project_settings.prototypes_developed != None %}<div class="col-6 col-lg-3 reveal"><strong>{{ project_settings.prototypes_developed }}</strong><span>Prototypes developed</span></div>{% endif %}
+            {% if project_settings.tests_conducted != None %}<div class="col-6 col-lg-3 reveal"><strong>{{ project_settings.tests_conducted }}</strong><span>Tests conducted</span></div>{% endif %}
+            {% if active_team_count %}<div class="col-6 col-lg-3 reveal"><strong>{{ active_team_count }}</strong><span>Active team members</span></div>{% endif %}
+            {% if active_partner_count %}<div class="col-6 col-lg-3 reveal"><strong>{{ active_partner_count }}</strong><span>Confirmed partners</span></div>{% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="section">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5 reveal">
+            <div><span class="eyebrow">People behind the work</span><h2 class="section-title mb-0">Meet the team</h2></div>
+            <a href="{% url 'ecofem:team_list' %}" class="arrow-link">View full team <i class="bi bi-arrow-right"></i></a>
+        </div>
+        {% if featured_members %}
+            <div class="row g-4">{% for member in featured_members %}<div class="col-md-6 col-lg-3">{% include "includes/team_card.html" %}</div>{% endfor %}</div>
+        {% else %}
+            <div class="empty-state reveal"><i class="bi bi-person-badge"></i><h3>Team profiles are being prepared</h3><p>Confirmed EcoFem team members will be introduced here as their profiles are added.</p><a href="{% url 'ecofem:team_list' %}" class="arrow-link">Visit the team page <i class="bi bi-arrow-right"></i></a></div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section updates-preview">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5 reveal">
+            <div><span class="eyebrow">From the project</span><h2 class="section-title mb-0">Latest updates</h2></div>
+            <a href="{% url 'ecofem:update_list' %}" class="arrow-link">View all updates <i class="bi bi-arrow-right"></i></a>
+        </div>
+        {% if latest_updates %}
+            <div class="row g-4">{% for update in latest_updates %}<div class="col-md-6 col-lg-4">{% include "includes/update_card.html" %}</div>{% endfor %}</div>
+        {% else %}
+            <div class="empty-state reveal"><i class="bi bi-journal-richtext"></i><h3>Updates will be published here</h3><p>Research progress, prototype milestones and community activities will be shared once confirmed.</p></div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section home-final-cta">
+    <div class="container">
+        <div class="final-cta reveal">
+            <span class="eyebrow">A shared future</span>
+            <h2>Help us build a healthier and more sustainable future.</h2>
+            <p>Whether you work in research, health, education, manufacturing or community development, there may be a meaningful way to collaborate.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3"><a href="{% url 'ecofem:contact' %}?subject=Partnership" class="btn btn-brand btn-lg">Partner with us</a><a href="{% url 'ecofem:contact' %}" class="btn btn-outline-brand btn-lg">Contact EcoFem</a></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
