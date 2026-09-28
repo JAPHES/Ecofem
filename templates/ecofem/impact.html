@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Our Impact{% endblock %}
+{% block meta_description %}See how EcoFem aims to contribute to menstrual dignity, environmental action, education, green livelihoods and responsible production.{% endblock %}
+
+{% block content %}
+{% include "includes/page_header.html" with eyebrow="Our impact" heading="One innovation. Interconnected possibilities." intro="EcoFem aims to create social and environmental value through better menstrual product access and thoughtful use of invasive biomass." %}
+
+<section class="section pt-0">
+    <div class="container">
+        <div class="impact-feature rose-bg reveal">
+            <div class="row g-5 align-items-center"><div class="col-lg-3"><span class="impact-index">01</span><i class="bi bi-heart-pulse impact-large-icon"></i></div><div class="col-lg-9"><span class="eyebrow">Women's health & dignity</span><h2>Access supports dignity, confidence and choice.</h2><p>EcoFem aims to increase access to affordable menstrual hygiene products designed around the practical needs of women and girls. Product safety, comfort and dependable performance remain development priorities requiring continued validation.</p></div></div>
+        </div>
+        <div class="row g-4 mt-2">
+            <div class="col-lg-6"><article class="impact-detail h-100 sage-bg reveal"><span class="impact-index">02</span><i class="bi bi-globe-africa"></i><h2>Environmental impact</h2><p>Water hyacinth is a disruptive invasive biomass in many waterways. EcoFem explores an opportunity to transform part of that material into a useful product input while working toward less persistent sanitary waste.</p><p class="small mb-0">Environmental benefit depends on responsible collection, processing choices and the final material system.</p></article></div>
+            <div class="col-lg-6"><article class="impact-detail h-100 cream-bg reveal"><span class="impact-index">03</span><i class="bi bi-mortarboard"></i><h2>Education</h2><p>Reliable access to menstrual hygiene products can support girls' comfort and participation in school. EcoFem aims to contribute to that wider goal without making unsupported attendance claims.</p></article></div>
+            <div class="col-lg-6"><article class="impact-detail h-100 blush-bg reveal"><span class="impact-index">04</span><i class="bi bi-briefcase"></i><h2>Economic opportunities</h2><p>A future EcoFem value chain could create opportunities in responsible biomass collection, local production, manufacturing, distribution and community outreach.</p><div class="mini-tags"><span>Local production</span><span>Biomass collection</span><span>Manufacturing</span><span>Distribution</span><span>Green jobs</span></div></article></div>
+            <div class="col-lg-6"><article class="impact-detail h-100 dark-bg reveal"><span class="impact-index">05</span><i class="bi bi-infinity"></i><h2>Sustainability</h2><p>The project is being shaped around more responsible material use, local problem-solving and a long-term ambition to reduce environmental burden.</p><p class="small mb-0">Lifecycle impact will need to be evaluated as the product and manufacturing process mature.</p></article></div>
+        </div>
+    </div>
+</section>
+
+<section class="section sdg-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4 reveal"><span class="eyebrow">Global context</span><h2 class="section-title">Contributing toward shared goals.</h2><p>EcoFem's intended impact relates to several United Nations Sustainable Development Goal areas.</p><div class="claim-note mt-4"><i class="bi bi-info-circle"></i><span>This alignment describes areas of contribution. It is not a claim of UN endorsement, accreditation or certification.</span></div></div>
+            <div class="col-lg-8"><div class="sdg-grid">
+                <article class="sdg-card reveal"><strong>03</strong><div><span>SDG 3</span><h3>Good Health & Well-being</h3></div></article>
+                <article class="sdg-card reveal"><strong>05</strong><div><span>SDG 5</span><h3>Gender Equality</h3></div></article>
+                <article class="sdg-card reveal"><strong>06</strong><div><span>SDG 6</span><h3>Clean Water & Sanitation</h3></div></article>
+                <article class="sdg-card reveal"><strong>12</strong><div><span>SDG 12</span><h3>Responsible Consumption & Production</h3></div></article>
+                <article class="sdg-card reveal"><strong>13</strong><div><span>SDG 13</span><h3>Climate Action</h3></div></article>
+            </div></div>
+        </div>
+    </div>
+</section>
+
+<section class="section partners-section"><div class="container"><div class="section-heading text-center reveal"><span class="eyebrow">Impact takes partnership</span><h2 class="section-title">Supporters in the journey</h2><p>Confirmed partners are displayed here without implying endorsements beyond the relationship provided.</p></div>{% include "includes/partner_grid.html" %}</div></section>
+
+{% include "includes/get_involved.html" %}
+{% endblock %}
