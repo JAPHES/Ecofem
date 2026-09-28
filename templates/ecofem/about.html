@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About EcoFem{% endblock %}
+{% block meta_description %}Learn about EcoFem's story, mission, vision and approach to sustainable menstrual care using processed water hyacinth fibres.{% endblock %}
+
+{% block content %}
+{% include "includes/page_header.html" with eyebrow="About EcoFem" heading="A local innovation for dignity and sustainability." intro="EcoFem brings menstrual health, biomaterials research and environmental responsibility into one purposeful product journey." %}
+
+<section class="section pt-0">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 reveal">
+                <span class="eyebrow">What is EcoFem?</span>
+                <h2 class="section-title">Menstrual care shaped by circular thinking.</h2>
+                <p class="section-lead">EcoFem is an innovation developing biodegradable sanitary pad prototypes that use processed water hyacinth fibres as part of the absorbent core.</p>
+                <p>The project responds to two urgent realities: the need for more affordable menstrual hygiene options and the environmental burden created by invasive water hyacinth and persistent sanitary waste.</p>
+                <p>EcoFem is currently under development. Its materials, product design and performance continue to be tested and improved in preparation for wider validation, certification and future commercialization.</p>
+            </div>
+            <div class="col-lg-6 reveal">
+                <div class="about-image-wrap">
+                    <img src="{% static 'images/ecofem-hero.png' %}" alt="EcoFem prototype development with natural fibre materials" loading="lazy">
+                    <div class="floating-label"><span>Purpose-led</span><strong>Menstrual dignity meets material innovation</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section story-section">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-5 reveal">
+                <span class="eyebrow">Our story</span>
+                <h2 class="section-title">Looking differently at an environmental challenge.</h2>
+            </div>
+            <div class="col-lg-7 reveal">
+                <div class="story-copy">
+                    {% if project_settings.project_story %}
+                        {{ project_settings.project_story|linebreaks }}
+                    {% else %}
+                        <p>EcoFem began with a practical question: could a problematic plant biomass be transformed into a useful material for a product women rely on every month?</p>
+                        <p>That question led to research into water hyacinth fibres, absorbent-core development and sanitary pad prototyping. The work continues through comparison, testing and improvement—with affordability, comfort and environmental responsibility guiding each decision.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6"><article class="purpose-card mission h-100 reveal"><span class="purpose-icon"><i class="bi bi-compass"></i></span><span class="eyebrow">Our mission</span><h2>Make sustainable care more accessible.</h2><p>{% if project_settings %}{{ project_settings.mission }}{% else %}To develop accessible, sustainable and high-performing menstrual hygiene solutions while transforming environmental waste into useful resources.{% endif %}</p></article></div>
+            <div class="col-lg-6"><article class="purpose-card vision h-100 reveal"><span class="purpose-icon"><i class="bi bi-eye"></i></span><span class="eyebrow eyebrow-light">Our vision</span><h2>Choice without compromise.</h2><p>{% if project_settings %}{{ project_settings.vision }}{% else %}A future where every woman and girl can access safe and affordable menstrual products without compromising the environment.{% endif %}</p></article></div>
+        </div>
+    </div>
+</section>
+
+<section class="section values-section">
+    <div class="container">
+        <div class="section-heading text-center reveal"><span class="eyebrow">What guides us</span><h2 class="section-title">Values behind every decision</h2></div>
+        <div class="values-grid">
+            {% if project_settings %}
+                {% for value in project_settings.value_list %}<div class="value-pill reveal"><span>{{ forloop.counter|stringformat:"02d" }}</span>{{ value }}</div>{% endfor %}
+            {% else %}
+                <div class="value-pill reveal"><span>01</span>Innovation</div><div class="value-pill reveal"><span>02</span>Sustainability</div><div class="value-pill reveal"><span>03</span>Dignity</div><div class="value-pill reveal"><span>04</span>Inclusivity</div><div class="value-pill reveal"><span>05</span>Quality</div><div class="value-pill reveal"><span>06</span>Community Impact</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="section leadership-section">
+    <div class="container">
+        <div class="section-heading reveal"><span class="eyebrow">Project leadership</span><h2 class="section-title">Vision with accountable leadership</h2></div>
+        {% if project_lead %}
+            <article class="leader-profile reveal">
+                <div class="row g-0 align-items-stretch">
+                    <div class="col-lg-5">
+                        {% if project_lead.profile_photo %}<img src="{{ project_lead.profile_photo.url }}" alt="Portrait of {{ project_lead.full_name }}" class="leader-photo">{% else %}<div class="image-placeholder leader-placeholder"><i class="bi bi-person"></i></div>{% endif %}
+                    </div>
+                    <div class="col-lg-7"><div class="leader-copy"><span class="role-badge d-inline-block position-static mb-3">Founder / Project Lead</span><h3>{{ project_lead.full_name }}</h3><p class="team-role">{{ project_lead.role }}</p><p>{{ project_lead.leadership_story|default:project_lead.short_bio }}</p>{% if project_lead.vision_for_ecofem %}<h4>Vision for EcoFem</h4><p>{{ project_lead.vision_for_ecofem }}</p>{% endif %}{% if project_lead.contribution %}<h4>Contribution</h4><p>{{ project_lead.contribution }}</p>{% endif %}<a href="{{ project_lead.get_absolute_url }}" class="arrow-link">View full profile <i class="bi bi-arrow-right"></i></a></div></div>
+                </div>
+            </article>
+        {% else %}
+            <div class="leadership-placeholder reveal"><div><i class="bi bi-person-heart"></i></div><div><h3>Leadership profile coming soon</h3><p>The confirmed founder or project lead will be presented here once their official profile is added. EcoFem does not publish unverified personal information.</p></div></div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section journey-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4 reveal"><span class="eyebrow">Development journey</span><h2 class="section-title">From question to tested product concept.</h2><p>The journey is iterative: evidence from each stage informs the next.</p></div>
+            <div class="col-lg-8">
+                <div class="journey-list">
+                    <div class="journey-item reveal"><span>01</span><div><h3>Problem discovery</h3><p>Connecting menstrual access needs with a local environmental challenge.</p></div></div>
+                    <div class="journey-item reveal"><span>02</span><div><h3>Material research</h3><p>Exploring how prepared water hyacinth fibre may function in an absorbent structure.</p></div></div>
+                    <div class="journey-item reveal"><span>03</span><div><h3>Prototype development</h3><p>Building early pad concepts and refining the construction method.</p></div></div>
+                    <div class="journey-item reveal"><span>04</span><div><h3>Testing and learning</h3><p>Comparing performance and identifying areas requiring improvement.</p></div></div>
+                    <div class="journey-item reveal"><span>05</span><div><h3>Validation and readiness</h3><p>Preparing for stronger product evidence, pilot learning and regulatory processes.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section partners-section">
+    <div class="container">
+        <div class="section-heading text-center reveal"><span class="eyebrow">Partners & supporters</span><h2 class="section-title">Progress grows through collaboration.</h2><p>Only confirmed organisations are listed.</p></div>
+        {% include "includes/partner_grid.html" %}
+    </div>
+</section>
+
+{% if gallery_images %}<section class="section pt-0"><div class="container"><div class="section-heading reveal"><span class="eyebrow">Inside the journey</span><h2 class="section-title">EcoFem gallery</h2></div>{% include "includes/gallery.html" %}</div></section>{% endif %}
+
+{% include "includes/get_involved.html" %}
+{% endblock %}
