@@ -1,0 +1,18 @@
+<article class="team-card h-100 reveal">
+    <div class="team-photo-wrap">
+        {% if member.profile_photo %}
+            <img src="{{ member.profile_photo.url }}" alt="Portrait of {{ member.full_name }}" class="team-photo" loading="lazy">
+        {% else %}
+            <div class="image-placeholder team-photo-placeholder" role="img" aria-label="Profile photo placeholder for {{ member.full_name }}">
+                <i class="bi bi-person"></i>
+            </div>
+        {% endif %}
+        {% if member.is_founder_or_lead %}<span class="role-badge">Project leadership</span>{% endif %}
+    </div>
+    <div class="team-card-body">
+        <h2 class="h4">{{ member.full_name }}</h2>
+        <p class="team-role">{{ member.role }}</p>
+        <p class="expertise"><i class="bi bi-stars me-2"></i>{{ member.expertise }}</p>
+        <a href="{{ member.get_absolute_url }}" class="stretched-link arrow-link" aria-label="View profile for {{ member.full_name }}">View profile <i class="bi bi-arrow-up-right"></i></a>
+    </div>
+</article>
