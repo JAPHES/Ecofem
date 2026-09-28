@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ update.title }}{% endblock %}
+{% block meta_description %}{{ update.short_description }}{% endblock %}
+{% block og_title %}{{ update.title }} | EcoFem Update{% endblock %}
+{% block og_description %}{{ update.short_description }}{% endblock %}
+
+{% block content %}
+<article class="article-page">
+    <header class="article-header">
+        <div class="container">
+            <a href="{% url 'ecofem:update_list' %}" class="back-link"><i class="bi bi-arrow-left"></i> All updates</a>
+            <div class="row justify-content-center"><div class="col-lg-9 text-center reveal">{% if update.is_featured %}<span class="content-badge position-static d-inline-block mb-3">Featured update</span>{% endif %}<h1>{{ update.title }}</h1><p>{{ update.short_description }}</p><div class="article-meta"><time datetime="{{ update.publication_date|date:'Y-m-d' }}">{{ update.publication_date|date:"F j, Y" }}</time><span></span><span>{{ update.author|default:"EcoFem Team" }}</span></div></div></div>
+        </div>
+    </header>
+    {% if update.featured_image %}<div class="container"><img src="{{ update.featured_image.url }}" alt="{{ update.title }}" class="article-feature-image"></div>{% endif %}
+    <div class="container"><div class="row justify-content-center"><div class="col-lg-8 article-body reveal">{{ update.content|linebreaks }}</div></div></div>
+</article>
+
+{% if related_updates %}<section class="section related-updates"><div class="container"><div class="section-heading reveal"><span class="eyebrow">Keep reading</span><h2 class="section-title">More from EcoFem</h2></div><div class="row g-4">{% for update in related_updates %}<div class="col-md-4">{% include "includes/update_card.html" %}</div>{% endfor %}</div></div></section>{% endif %}
+
+{% include "includes/get_involved.html" %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Updates{% endblock %}
+{% block meta_description %}Follow confirmed EcoFem news on prototype development, research, laboratory work, events and project progress.{% endblock %}
+
+{% block content %}
+{% include "includes/page_header.html" with eyebrow="News & updates" heading="Following the EcoFem journey." intro="Confirmed milestones, research progress, events and lessons from the development process." %}
+
+<section class="section pt-0">
+    <div class="container">
+        {% if page_obj %}
+            <div class="row g-4">
+                {% for update in page_obj %}<div class="col-md-6 col-lg-4">{% include "includes/update_card.html" %}</div>{% endfor %}
+            </div>
+            {% if page_obj.has_other_pages %}
+                <nav class="mt-5" aria-label="Updates pagination"><ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><i class="bi bi-arrow-left"></i></a></li>{% endif %}
+                    {% for number in page_obj.paginator.page_range %}<li class="page-item {% if page_obj.number == number %}active{% endif %}"><a class="page-link" href="?page={{ number }}">{{ number }}</a></li>{% endfor %}
+                    {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next"><i class="bi bi-arrow-right"></i></a></li>{% endif %}
+                </ul></nav>
+            {% endif %}
+        {% else %}
+            <div class="empty-state reveal"><i class="bi bi-journal-richtext"></i><h2>No published updates yet</h2><p>Confirmed EcoFem research, prototype and community updates will be published here. We do not use invented news to fill the page.</p><a href="{% url 'ecofem:contact' %}" class="btn btn-brand">Contact EcoFem</a></div>
+        {% endif %}
+    </div>
+</section>
+
+{% if gallery_images %}<section class="section gallery-section"><div class="container"><div class="section-heading reveal"><span class="eyebrow">Project gallery</span><h2 class="section-title">Work in progress</h2><p>Confirmed images from EcoFem activities and development.</p></div>{% include "includes/gallery.html" %}</div></section>{% endif %}
+
+{% include "includes/get_involved.html" %}
+{% endblock %}
