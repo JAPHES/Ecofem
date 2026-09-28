@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Our Team{% endblock %}
+{% block meta_description %}Meet the people contributing their expertise to EcoFem's menstrual health and sustainable biomaterials innovation.{% endblock %}
+
+{% block content %}
+{% include "includes/page_header.html" with eyebrow="The EcoFem team" heading="Different disciplines. One shared purpose." intro="EcoFem brings together people across science, engineering, product development, business and community impact." %}
+
+<section class="section pt-0">
+    <div class="container">
+        {% if members %}
+            <div class="row g-4">
+                {% for member in members %}
+                    <div class="col-md-6 col-lg-4 col-xl-3">{% include "includes/team_card.html" %}</div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state reveal"><i class="bi bi-people"></i><h2>Team profiles are coming soon</h2><p>Official profiles will appear here after they are confirmed and added by the EcoFem project team.</p><a href="{% url 'ecofem:contact' %}" class="btn btn-brand">Contact EcoFem</a></div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section expertise-band">
+    <div class="container">
+        <div class="section-heading text-center reveal"><span class="eyebrow eyebrow-light">Expertise for the journey</span><h2 class="section-title text-white">Building across disciplines</h2></div>
+        <div class="expertise-cloud reveal"><span>Biomaterials</span><span>Chemistry</span><span>Engineering</span><span>Product Design</span><span>Business Development</span><span>Digital & ICT</span><span>Strategy</span><span>Finance</span><span>Project Management</span></div>
+    </div>
+</section>
+
+{% include "includes/get_involved.html" %}
+{% endblock %}

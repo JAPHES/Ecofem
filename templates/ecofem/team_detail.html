@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ member.full_name }}{% endblock %}
+{% block meta_description %}Meet {{ member.full_name }}, {{ member.role }} at EcoFem, and learn about their contribution to the project.{% endblock %}
+{% block og_title %}{{ member.full_name }} | EcoFem Team{% endblock %}
+
+{% block content %}
+<section class="profile-hero">
+    <div class="container">
+        <a href="{% url 'ecofem:team_list' %}" class="back-link"><i class="bi bi-arrow-left"></i> Back to the team</a>
+        <div class="profile-panel">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-lg-5">
+                    {% if member.profile_photo %}<img src="{{ member.profile_photo.url }}" alt="Professional portrait of {{ member.full_name }}" class="profile-photo">{% else %}<div class="image-placeholder profile-placeholder" role="img" aria-label="Profile photo placeholder for {{ member.full_name }}"><i class="bi bi-person"></i></div>{% endif %}
+                </div>
+                <div class="col-lg-7"><div class="profile-heading reveal">{% if member.is_founder_or_lead %}<span class="role-badge d-inline-block position-static mb-3">Project leadership</span>{% endif %}<span class="eyebrow eyebrow-light">EcoFem team</span><h1>{{ member.full_name }}</h1><p class="profile-role">{{ member.role }}</p><div class="profile-expertise"><i class="bi bi-stars"></i><div><small>Area of expertise</small><strong>{{ member.expertise }}</strong></div></div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section profile-content">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8 reveal"><span class="eyebrow">Professional background</span><h2>About {{ member.full_name }}</h2><div class="long-copy">{{ member.short_bio|linebreaks }}{% if member.professional_background %}{{ member.professional_background|linebreaks }}{% endif %}</div>{% if member.contribution %}<div class="contribution-box"><span class="eyebrow">What they bring to EcoFem</span><h2>Contribution to the project</h2>{{ member.contribution|linebreaks }}</div>{% endif %}{% if member.vision_for_ecofem %}<div class="vision-quote"><i class="bi bi-quote"></i><div><h2>Vision for EcoFem</h2>{{ member.vision_for_ecofem|linebreaks }}</div></div>{% endif %}</div>
+            <aside class="col-lg-4 reveal"><div class="profile-contact"><h2>Connect</h2><p>Professional contact details shared by this team member.</p>{% if member.email %}<a href="mailto:{{ member.email }}"><i class="bi bi-envelope"></i>{{ member.email }}</a>{% endif %}{% if member.linkedin_url %}<a href="{{ member.linkedin_url }}" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i>LinkedIn profile</a>{% endif %}{% if not member.email and not member.linkedin_url %}<p class="small text-muted mb-0">No public contact details are currently listed.</p>{% endif %}</div></aside>
+        </div>
+    </div>
+</section>
+
+{% include "includes/get_involved.html" %}
+{% endblock %}
