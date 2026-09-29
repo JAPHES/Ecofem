@@ -140,6 +140,17 @@ class CodeManagedContentTests(SimpleTestCase):
         for member in TEAM_MEMBERS:
             self.assertNotContains(response, f'/team/{member["slug"]}/')
 
+    def test_team_social_icons_fall_back_to_team_page(self):
+        response = self.client.get(reverse("ecofem:team_list"))
+        self.assertContains(response, 'class="team-social-link"', count=40)
+        self.assertContains(
+            response,
+            'href="/team/" class="team-social-link"',
+            count=40,
+        )
+        for label in ("LinkedIn", "Instagram", "Twitter", "Facebook"):
+            self.assertContains(response, f'aria-label="{label} for', count=10)
+
     @patch("ecofem.views.UPDATES", [SAMPLE_UPDATE])
     def test_update_uses_code_content_and_static_image(self):
         response = self.client.get(
