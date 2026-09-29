@@ -9,7 +9,9 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="{% block og_title %}EcoFem | Sustainable Menstrual Care, Naturally{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Menstrual health innovation meets environmental sustainability.{% endblock %}">
-    <meta property="og:image" content="{% static 'images/ecofem-hero.png' %}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ site_url }}{% static 'images/ecofem-hero.png' %}">
+    <link rel="canonical" href="{{ canonical_url }}">
     <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
