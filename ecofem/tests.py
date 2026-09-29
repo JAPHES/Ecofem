@@ -63,12 +63,29 @@ class PublicPageTests(SimpleTestCase):
         self.assertNotIn("django.contrib.admin", settings.INSTALLED_APPS)
 
     def test_admin_route_does_not_exist(self):
-        self.assertEqual(self.client.get("/admin/").status_code, 404)
+        for path in ("/admin", "/admin/", "/admin/login/", "/admin/users/"):
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 404)
+                self.assertContains(
+                    response,
+                    "This page has drifted away",
+                    status_code=404,
+                )
+                self.assertEqual(response["Cache-Control"], "no-store")
+                self.assertEqual(response["X-Robots-Tag"], "noindex, nofollow")
+                self.assertContains(
+                    response,
+                    '<meta name="robots" content="noindex, nofollow">',
+                    status_code=404,
+                )
 
     def test_unknown_page_returns_custom_404(self):
         response = self.client.get("/this-page-does-not-exist/")
         self.assertEqual(response.status_code, 404)
         self.assertContains(response, "This page has drifted away", status_code=404)
+        self.assertEqual(response["Cache-Control"], "no-store")
+        self.assertEqual(response["X-Robots-Tag"], "noindex, nofollow")
 
     def test_canonical_and_open_graph_urls_are_absolute(self):
         response = self.client.get(reverse("ecofem:about"))

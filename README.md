@@ -18,6 +18,8 @@ content is edited in `ecofem/content.py`, while all images are committed under
 - Responsive Bootstrap 5 design and accessible markup
 - SEO descriptions, canonical URLs and Open Graph metadata
 - Custom 404 and 500 pages
+- Explicitly blocked `/admin` and nested admin paths with non-cacheable,
+  search-safe 404 responses
 - A front-end demonstration contact form with success feedback
 - No server-side storage of contact details
 - Automated tests that run without creating a test database
