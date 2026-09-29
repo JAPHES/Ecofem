@@ -38,10 +38,10 @@ SITE = {
         "Quality",
         "Community Impact",
     ),
-    # Replace these placeholders when the official details are confirmed.
-    "email": "",
+    # Public contact details; leave optional values blank to hide them.
+    "email": "octorvitalice@gmail.com",
     "phone": "",
-    "location": "Location to be confirmed",
+    "location": "",
     "linkedin_url": "",
     "instagram_url": "",
     "facebook_url": "",
@@ -52,13 +52,13 @@ SITE = {
 # until approved portraits are added under static/images/team/.
 TEAM_MEMBERS = [
     {
-        "full_name": "Vitalice Octor",
-        "slug": "vitalice-octor",
+        "full_name": "Octor Vitalice",
+        "slug": "octor-vitalice",
         "profile_photo": "",
         "role": "Innovator",
         "expertise": "Natural Material Expert",
         "short_bio": (
-            "Vitalice serves as EcoFem's Innovator with expertise in natural "
+            "Octor serves as EcoFem's Innovator with expertise in natural "
             "materials."
         ),
         "professional_background": (

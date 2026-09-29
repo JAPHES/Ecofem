@@ -83,7 +83,7 @@
                     <h2 class="footer-heading">Contact</h2>
                     <ul class="footer-links list-unstyled">
                         <li><i class="bi bi-envelope me-2"></i>{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% else %}<span>Email to be confirmed</span>{% endif %}</li>
-                        <li><i class="bi bi-geo-alt me-2"></i>{{ site.location }}</li>
+                        {% if site.location %}<li><i class="bi bi-geo-alt me-2"></i>{{ site.location }}</li>{% endif %}
                     </ul>
                     <div class="social-links mt-3" aria-label="Social media links">
                         {% if site.linkedin_url %}<a href="{{ site.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>{% endif %}
