@@ -2269,7 +2269,8 @@ textarea.form-control {
     }
 
     .hero-image {
-        object-position: 66% center;
+        /* Keep the woman and prototype inside the narrow mobile crop. */
+        object-position: 82% center;
     }
 
     .hero-overlay {
@@ -2388,6 +2389,10 @@ textarea.form-control {
 }
 
 @media (max-width: 575.98px) {
+    .hero-image {
+        object-position: 84% center;
+    }
+
     .hero-panel,
     .cta-panel,
     .final-cta,
