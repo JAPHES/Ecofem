@@ -8,10 +8,7 @@ __pycache__/
 venv/
 .venv/
 
-# Django local state
-db.sqlite3
-media/*
-!media/.gitkeep
+# Django build output
 staticfiles/
 
 # Environment and tooling
