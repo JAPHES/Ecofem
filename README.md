@@ -122,6 +122,9 @@ TEAM_MEMBERS = [
         "vision_for_ecofem": "",
         "email": "",
         "linkedin_url": "",
+        "instagram_url": "",
+        "twitter_url": "",
+        "facebook_url": "",
         "is_founder_or_lead": False,
         "is_featured": True,
         "is_active": True,
@@ -133,6 +136,10 @@ Use a unique lowercase slug with hyphens so detail pages can be restored later.
 Set `is_founder_or_lead` to `True` for the confirmed founder. Public team-detail
 routes are currently disabled, and up to four featured people appear on the
 homepage.
+
+Each team card displays LinkedIn, Instagram, Twitter and Facebook icons. An
+empty social URL sends visitors back to the Team page. Replace an empty value
+with the member's confirmed full profile URL to activate that social link.
 
 ## Add an update
 
