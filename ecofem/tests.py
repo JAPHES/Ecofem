@@ -34,6 +34,15 @@ class PublicPageTests(TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertContains(response, "This page has drifted away", status_code=404)
 
+    def test_canonical_and_open_graph_urls_are_absolute(self):
+        response = self.client.get(reverse("ecofem:about"))
+        self.assertEqual(response.context["canonical_url"], "http://testserver/about/")
+        self.assertContains(
+            response,
+            '<meta property="og:image" content="http://testserver/static/images/',
+            html=False,
+        )
+
 
 class TeamTests(TestCase):
     def test_active_team_member_profile_is_public(self):
