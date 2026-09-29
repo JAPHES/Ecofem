@@ -41,21 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const contactForm = document.querySelector("#contactForm");
+    const contactSuccess = document.querySelector("#contactSuccess");
     contactForm?.addEventListener("submit", (event) => {
         event.preventDefault();
         if (!contactForm.reportValidity()) return;
 
-        const fields = new FormData(contactForm);
-        const recipient = contactForm.dataset.recipient;
-        const emailSubject = fields.get("subject");
-        const body = [
-            `Name: ${fields.get("name")}`,
-            `Email: ${fields.get("email")}`,
-            `Organisation: ${fields.get("organisation") || "Not provided"}`,
-            "",
-            fields.get("message"),
-        ].join("\n");
+        contactForm.reset();
+        contactSuccess?.classList.remove("d-none");
+        contactSuccess?.focus();
+    });
 
-        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(body)}`;
+    contactForm?.addEventListener("input", () => {
+        contactSuccess?.classList.add("d-none");
     });
 });

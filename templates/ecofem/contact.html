@@ -17,11 +17,7 @@
                     <div class="contact-details">
                         <div>
                             <i class="bi bi-envelope"></i>
-                            <span><small>Email</small>{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% else %}<strong>Email to be confirmed</strong>{% endif %}</span>
-                        </div>
-                        <div>
-                            <i class="bi bi-geo-alt"></i>
-                            <span><small>Location</small><strong>{{ site.location }}</strong></span>
+                            <span><small>Email</small><a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
                         </div>
                         {% if site.phone %}<div><i class="bi bi-telephone"></i><span><small>Phone</small><a href="tel:{{ site.phone }}">{{ site.phone }}</a></span></div>{% endif %}
                     </div>
@@ -33,24 +29,25 @@
             </div>
             <div class="col-lg-7">
                 <div class="contact-form-card reveal">
-                    <span class="eyebrow">Send an email</span>
+                    <span class="eyebrow">Send a message</span>
                     <h2>How can we help?</h2>
-                    <p class="form-privacy"><i class="bi bi-shield-check"></i>This website does not submit or store your details.</p>
-                    {% if site.email %}
-                        <p class="mb-4">Complete the fields below. Your email application will open with the message ready for you to review and send.</p>
-                        <form id="contactForm" data-recipient="{{ site.email }}">
-                            <div class="row g-3">
-                                <div class="col-md-6"><label for="contactName" class="form-label">Name *</label><input id="contactName" name="name" class="form-control" type="text" autocomplete="name" required></div>
-                                <div class="col-md-6"><label for="contactEmail" class="form-label">Email *</label><input id="contactEmail" name="email" class="form-control" type="email" autocomplete="email" required></div>
-                                <div class="col-md-6"><label for="contactOrganisation" class="form-label">Organisation</label><input id="contactOrganisation" name="organisation" class="form-control" type="text" autocomplete="organization"></div>
-                                <div class="col-md-6"><label for="contactSubject" class="form-label">Subject *</label><input id="contactSubject" name="subject" class="form-control" type="text" required></div>
-                                <div class="col-12"><label for="contactMessage" class="form-label">Message *</label><textarea id="contactMessage" name="message" class="form-control" rows="6" minlength="20" required></textarea></div>
-                                <div class="col-12"><button type="submit" class="btn btn-brand btn-lg w-100">Continue to email <i class="bi bi-envelope-arrow-up ms-2"></i></button><p class="form-privacy"><i class="bi bi-envelope"></i>Your own email application handles the message.</p></div>
+                    <p class="mb-4">Complete the fields below and press Send message.</p>
+                    <div id="contactSuccess" class="alert alert-success d-none" role="status" tabindex="-1">
+                        <i class="bi bi-check-circle me-2"></i>Message sent.
+                    </div>
+                    <form id="contactForm">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label for="contactName" class="form-label">Name *</label><input id="contactName" name="name" class="form-control" type="text" autocomplete="name" required></div>
+                            <div class="col-md-6"><label for="contactEmail" class="form-label">Email *</label><input id="contactEmail" name="email" class="form-control" type="email" autocomplete="email" required></div>
+                            <div class="col-md-6"><label for="contactOrganisation" class="form-label">Organisation</label><input id="contactOrganisation" name="organisation" class="form-control" type="text" autocomplete="organization"></div>
+                            <div class="col-md-6"><label for="contactSubject" class="form-label">Subject *</label><input id="contactSubject" name="subject" class="form-control" type="text" required></div>
+                            <div class="col-12"><label for="contactMessage" class="form-label">Message *</label><textarea id="contactMessage" name="message" class="form-control" rows="6" minlength="20" required></textarea></div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-brand btn-lg w-100">Send message <i class="bi bi-send ms-2"></i></button>
+                                <p class="form-privacy"><i class="bi bi-info-circle"></i>This is a demonstration form. Messages are not transmitted or stored yet.</p>
                             </div>
-                        </form>
-                    {% else %}
-                        <div class="empty-state compact mb-0"><i class="bi bi-envelope-exclamation"></i><h3>Contact email coming soon</h3><p>Add the official EcoFem email in <code>ecofem/content.py</code> to activate this form.</p></div>
-                    {% endif %}
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
