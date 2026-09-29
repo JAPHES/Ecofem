@@ -24,11 +24,12 @@ Under **Project Settings → Environment Variables**, add:
 ```dotenv
 DJANGO_SECRET_KEY=<a-long-random-secret>
 DJANGO_DEBUG=False
-DJANGO_ALLOWED_HOSTS=.vercel.app
+DJANGO_ALLOWED_HOSTS=.vercel.app,ecofem.secora.dev
+DJANGO_CSRF_TRUSTED_ORIGINS=https://*.vercel.app,https://ecofem.secora.dev
 DJANGO_TIME_ZONE=Africa/Nairobi
 DJANGO_SECURE_SSL_REDIRECT=True
 DJANGO_SECURE_HSTS_SECONDS=0
-SITE_URL=https://your-project-name.vercel.app
+SITE_URL=https://ecofem.secora.dev
 ```
 
 Generate a secret locally with:
@@ -41,21 +42,61 @@ Keep the value private. Do not add it to Git or `ecofem/content.py`.
 
 ## 3. Deploy
 
-Click **Deploy**. After Vercel gives the project its final URL, update
-`SITE_URL` with that exact HTTPS address and redeploy.
+Click **Deploy**. The temporary `vercel.app` address can be used to verify the
+deployment before connecting `ecofem.secora.dev`.
 
 No migration or superuser commands are needed.
 
-## 4. Add a custom domain later
+## 4. Connect `ecofem.secora.dev`
 
-After adding the domain under **Project Settings → Domains**, change:
+### Add the hostname to Vercel first
 
-```dotenv
-DJANGO_ALLOWED_HOSTS=.vercel.app,ecofem.example.org,www.ecofem.example.org
-SITE_URL=https://ecofem.example.org
+1. Open the EcoFem project in Vercel.
+2. Select **Settings**, then **Domains**.
+3. Select **Add Domain**.
+4. Enter `ecofem.secora.dev` and confirm.
+5. Vercel will show the exact CNAME target assigned to the project. Copy that
+   value exactly. A current general-purpose value is
+   `cname.vercel-dns-0.com`, but use the project-specific value shown in your
+   Vercel dashboard if it is different.
+
+### Create the record at Name.com
+
+These steps assume `secora.dev` uses Name.com's nameservers. If Name.com shows
+a nameserver warning, create the record with the DNS provider named in the
+domain's current nameservers instead.
+
+1. Sign in to Name.com.
+2. Open **My Domains** and select `secora.dev`.
+3. Open **Manage DNS Records**.
+4. Check for an existing `ecofem` A, AAAA or CNAME record. Do not create a
+   second conflicting record; remove or replace only the conflicting `ecofem`
+   record.
+5. Add this record using the exact target supplied by Vercel:
+
+| Name.com field | Value |
+|---|---|
+| Type | `CNAME` |
+| Host | `ecofem` |
+| Answer | the exact Vercel CNAME target |
+| TTL | `300` (default) |
+
+Use only `ecofem` in the Host field, not the full domain, and do not enter
+`https://` or a URL path in the Answer field. This CNAME does not affect the
+existing `secora.dev` website or its email records.
+
+### Verify and activate HTTPS
+
+Return to **Vercel > EcoFem > Settings > Domains** and refresh the domain
+status. Once DNS is verified, Vercel provisions HTTPS for the hostname. DNS
+often updates quickly, but allow up to 24 hours.
+
+After the hostname is valid, redeploy once so the Production environment uses
+the custom-domain values. Verify DNS from PowerShell with:
+
+```powershell
+Resolve-DnsName -Type CNAME ecofem.secora.dev
 ```
-
-Redeploy after changing environment variables.
 
 ## 5. Update website content
 

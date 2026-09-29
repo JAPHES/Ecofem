@@ -216,6 +216,10 @@ storage system.
 
 No database or storage environment variables are used.
 
+The intended production address is `https://ecofem.secora.dev`. A ready-to-copy
+Vercel configuration is provided in `.env.production.example`; do not put the
+real secret key in that committed example file.
+
 ## Deployment
 
 Follow [DEPLOYMENT.md](DEPLOYMENT.md). Vercel only needs the GitHub repository
