@@ -102,24 +102,42 @@ class CodeManagedContentTests(SimpleTestCase):
 
         self.assertContains(response, "Profile photo placeholder for", count=10)
 
-    def test_project_lead_profile_includes_supplied_experience(self):
-        response = self.client.get(
-            reverse("ecofem:team_detail", args=["yvonne-achieng"])
+    def test_vitalice_is_first_and_presented_as_founder(self):
+        team_response = self.client.get(reverse("ecofem:team_list"))
+        team_html = team_response.content.decode()
+        self.assertLess(
+            team_html.index("Vitalice Octor"),
+            team_html.index("Yvonne Achieng’"),
         )
-        self.assertContains(response, "Yvonne Achieng’")
-        self.assertContains(response, "applied statistician")
+        self.assertContains(team_response, "Founder", count=1)
+        self.assertNotContains(team_response, "Project leadership")
+
+        about_response = self.client.get(reverse("ecofem:about"))
+        self.assertContains(about_response, "Vitalice Octor")
+        self.assertContains(about_response, "Founder / Innovator")
+
+    def test_japhes_murithi_name_is_updated(self):
+        response = self.client.get(reverse("ecofem:team_list"))
+        self.assertContains(response, "Japhes Murithi")
+        self.assertNotContains(response, "James Murithi")
 
     @patch("ecofem.views.TEAM_MEMBERS", [SAMPLE_MEMBER])
-    def test_team_profile_uses_code_content_and_static_image(self):
-        response = self.client.get(
-            reverse("ecofem:team_detail", args=[SAMPLE_MEMBER["slug"]])
-        )
+    def test_team_card_uses_code_content_and_static_image(self):
+        response = self.client.get(reverse("ecofem:team_list"))
         self.assertContains(response, SAMPLE_MEMBER["full_name"])
         self.assertContains(response, "/static/images/team/example-member.jpg")
 
-    def test_unknown_team_profile_is_404(self):
-        response = self.client.get(reverse("ecofem:team_detail", args=["missing"]))
-        self.assertEqual(response.status_code, 404)
+    def test_all_team_profile_paths_are_blocked(self):
+        for member in TEAM_MEMBERS:
+            with self.subTest(member=member["full_name"]):
+                response = self.client.get(f"/team/{member['slug']}/")
+                self.assertEqual(response.status_code, 404)
+
+    def test_team_cards_have_no_profile_links(self):
+        response = self.client.get(reverse("ecofem:team_list"))
+        self.assertNotContains(response, "View profile")
+        for member in TEAM_MEMBERS:
+            self.assertNotContains(response, f'/team/{member["slug"]}/')
 
     @patch("ecofem.views.UPDATES", [SAMPLE_UPDATE])
     def test_update_uses_code_content_and_static_image(self):
