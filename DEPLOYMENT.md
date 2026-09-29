@@ -124,10 +124,10 @@ Check that:
 - `/`, `/about/`, `/innovation/`, `/impact/`, `/team/`, `/updates/` and
   `/contact/` load over HTTPS
 - CSS, JavaScript, favicon and static images load
-- any code-added team and update detail pages load
+- team cards display their disabled View profile controls
+- any code-added update detail pages load
 - the mobile menu works
-- the Contact button opens the visitor's email application after an official
-  address is added to `ecofem/content.py`
+- the demonstration Contact form validates and displays its success message
 - an unknown URL displays the custom 404 page
 - `/admin/` does not exist
 

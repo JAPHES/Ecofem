@@ -18,7 +18,7 @@ content is edited in `ecofem/content.py`, while all images are committed under
 - Responsive Bootstrap 5 design and accessible markup
 - SEO descriptions, canonical URLs and Open Graph metadata
 - Custom 404 and 500 pages
-- A contact composer that opens the visitor's email app
+- A front-end demonstration contact form with success feedback
 - No server-side storage of contact details
 - Automated tests that run without creating a test database
 
@@ -90,15 +90,16 @@ py manage.py test
 Open `ecofem/content.py` and update the `SITE` dictionary. This controls the
 mission, vision, story, values, contact details and social links.
 
-Set the real email before launch:
+The public EcoFem contact email is configured in `SITE`:
 
 ```python
-"email": "hello@your-real-domain.org",
+"email": "octorvitalice@gmail.com",
 ```
 
-When an email is present, the Contact form builds a `mailto:` link and opens
-the visitor's own email application. The website does not receive or store the
-form values.
+The current Contact form validates in the browser, displays “Message sent,” and
+resets. It is intentionally a front-end demonstration: it does not transmit or
+store submitted values. Connect a real form or email service before relying on
+it for enquiries.
 
 ## Add a team member
 

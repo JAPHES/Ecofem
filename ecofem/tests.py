@@ -102,18 +102,18 @@ class CodeManagedContentTests(SimpleTestCase):
 
         self.assertContains(response, "Profile photo placeholder for", count=10)
 
-    def test_vitalice_is_first_and_presented_as_founder(self):
+    def test_octor_is_first_and_presented_as_founder(self):
         team_response = self.client.get(reverse("ecofem:team_list"))
         team_html = team_response.content.decode()
         self.assertLess(
-            team_html.index("Vitalice Octor"),
+            team_html.index("Octor Vitalice"),
             team_html.index("Yvonne Achieng’"),
         )
         self.assertContains(team_response, "Founder", count=1)
         self.assertNotContains(team_response, "Project leadership")
 
         about_response = self.client.get(reverse("ecofem:about"))
-        self.assertContains(about_response, "Vitalice Octor")
+        self.assertContains(about_response, "Octor Vitalice")
         self.assertContains(about_response, "Founder / Innovator")
 
     def test_japhes_murithi_name_is_updated(self):
@@ -133,9 +133,10 @@ class CodeManagedContentTests(SimpleTestCase):
                 response = self.client.get(f"/team/{member['slug']}/")
                 self.assertEqual(response.status_code, 404)
 
-    def test_team_cards_have_no_profile_links(self):
+    def test_team_cards_show_disabled_profile_controls_without_links(self):
         response = self.client.get(reverse("ecofem:team_list"))
-        self.assertNotContains(response, "View profile")
+        self.assertContains(response, "View profile", count=10)
+        self.assertContains(response, 'disabled aria-disabled="true"', count=10)
         for member in TEAM_MEMBERS:
             self.assertNotContains(response, f'/team/{member["slug"]}/')
 
@@ -149,4 +150,8 @@ class CodeManagedContentTests(SimpleTestCase):
 
     def test_contact_page_explains_that_details_are_not_stored(self):
         response = self.client.get(reverse("ecofem:contact"))
-        self.assertContains(response, "does not submit or store", status_code=200)
+        self.assertContains(response, "octorvitalice@gmail.com", status_code=200)
+        self.assertContains(response, "Message sent.")
+        self.assertContains(response, "Messages are not transmitted or stored yet")
+        self.assertNotContains(response, "Location")
+        self.assertNotContains(response, "data-recipient")
