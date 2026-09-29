@@ -27,7 +27,7 @@ def home(request):
 
 
 def about(request):
-    project_lead = next(
+    founder = next(
         (
             member
             for member in _active_team()
@@ -36,7 +36,7 @@ def about(request):
         None,
     )
     context = {
-        "project_lead": project_lead,
+        "founder": founder,
         "partners": PARTNERS,
         "gallery_images": GALLERY_IMAGES[:6],
     }
@@ -53,16 +53,6 @@ def impact(request):
 
 def team_list(request):
     return render(request, "ecofem/team_list.html", {"members": _active_team()})
-
-
-def team_detail(request, slug):
-    member = next(
-        (member for member in _active_team() if member.get("slug") == slug),
-        None,
-    )
-    if member is None:
-        raise Http404("Team member not found")
-    return render(request, "ecofem/team_detail.html", {"member": member})
 
 
 def update_list(request):

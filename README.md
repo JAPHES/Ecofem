@@ -12,7 +12,7 @@ content is edited in `ecofem/content.py`, while all images are committed under
 ## Pages and features
 
 - Home, About, Innovation, Impact, Team, Updates and Contact pages
-- Optional code-managed team profiles and update detail pages
+- Code-managed team cards and optional update detail pages
 - Optional code-managed partner and gallery sections
 - Static CSS, JavaScript, brand artwork and content images
 - Responsive Bootstrap 5 design and accessible markup
@@ -128,9 +128,10 @@ TEAM_MEMBERS = [
 ]
 ```
 
-Use a unique lowercase slug with hyphens. Set `is_founder_or_lead` to `True`
-for the one confirmed founder/project lead. Up to four featured people appear
-on the homepage.
+Use a unique lowercase slug with hyphens so detail pages can be restored later.
+Set `is_founder_or_lead` to `True` for the confirmed founder. Public team-detail
+routes are currently disabled, and up to four featured people appear on the
+homepage.
 
 ## Add an update
 

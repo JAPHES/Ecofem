@@ -38,7 +38,7 @@
                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'ecofem:about' %}">About</a></li>
                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'innovation' %}active{% endif %}" href="{% url 'ecofem:innovation' %}">Innovation</a></li>
                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'impact' %}active{% endif %}" href="{% url 'ecofem:impact' %}">Impact</a></li>
-                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'team_list' or request.resolver_match.url_name == 'team_detail' %}active{% endif %}" href="{% url 'ecofem:team_list' %}">Team</a></li>
+                    <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'team_list' %}active{% endif %}" href="{% url 'ecofem:team_list' %}">Team</a></li>
                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'update_list' or request.resolver_match.url_name == 'update_detail' %}active{% endif %}" href="{% url 'ecofem:update_list' %}">Updates</a></li>
                     <li class="nav-item ms-lg-2"><a class="btn btn-brand btn-sm px-4" href="{% url 'ecofem:contact' %}">Contact</a></li>
                 </ul>
