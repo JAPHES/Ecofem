@@ -1,11 +1,11 @@
-import os
+from django.conf import settings
 
 from .content import SITE
 
 
 def site_context(request):
     """Expose code-managed site details and absolute metadata URLs."""
-    site_url = os.getenv("SITE_URL", "").rstrip("/")
+    site_url = settings.SITE_URL
     if not site_url:
         site_url = request.build_absolute_uri("/").rstrip("/")
 

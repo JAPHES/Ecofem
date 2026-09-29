@@ -1,6 +1,7 @@
 """Settings for the EcoFem informational website."""
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
@@ -24,6 +25,7 @@ def env_list(name, default=""):
 
 IS_VERCEL = env_bool("VERCEL")
 DEBUG = env_bool("DJANGO_DEBUG", default=not IS_VERCEL)
+SITE_URL = os.getenv("SITE_URL", "").rstrip("/")
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
@@ -38,6 +40,12 @@ ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
 if IS_VERCEL and ".vercel.app" not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(".vercel.app")
 
+# SITE_URL is the canonical public address. Trust its hostname automatically so
+# a configured custom domain cannot fail with Django's DisallowedHost response.
+public_host = urlparse(SITE_URL).hostname
+if public_host and public_host not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(public_host)
+
 for vercel_host_variable in ("VERCEL_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
     vercel_host = os.getenv(vercel_host_variable, "").strip()
     if vercel_host and vercel_host not in ALLOWED_HOSTS:
@@ -46,6 +54,11 @@ for vercel_host_variable in ("VERCEL_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
 CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
 if IS_VERCEL and "https://*.vercel.app" not in CSRF_TRUSTED_ORIGINS:
     CSRF_TRUSTED_ORIGINS.append("https://*.vercel.app")
+if (
+    SITE_URL.startswith(("http://", "https://"))
+    and SITE_URL not in CSRF_TRUSTED_ORIGINS
+):
+    CSRF_TRUSTED_ORIGINS.append(SITE_URL)
 
 INSTALLED_APPS = [
     "django.contrib.staticfiles",

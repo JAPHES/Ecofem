@@ -2,7 +2,7 @@ from datetime import date
 from unittest.mock import patch
 
 from django.conf import settings
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 
 
@@ -74,6 +74,14 @@ class PublicPageTests(SimpleTestCase):
             response,
             '<meta property="og:image" content="http://testserver/static/images/',
             html=False,
+        )
+
+    @override_settings(SITE_URL="https://ecofem.secora.dev")
+    def test_custom_domain_is_used_for_canonical_metadata(self):
+        response = self.client.get(reverse("ecofem:about"))
+        self.assertEqual(
+            response.context["canonical_url"],
+            "https://ecofem.secora.dev/about/",
         )
 
 
