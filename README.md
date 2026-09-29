@@ -232,9 +232,10 @@ Open **Contact messages** to search and review enquiries. Visitor-submitted deta
 ## Static and media files
 
 - Source static assets live in `static/`.
-- Admin-uploaded content is stored in `media/`.
+- Admin-uploaded content is stored in `media/` during local development.
 - Django serves media automatically only when local `DEBUG=True`.
 - Uploaded files are intentionally ignored by Git except for `media/.gitkeep`.
+- On Vercel, configure the included S3-compatible storage settings before uploading production media.
 
 For a deployment build:
 
@@ -243,6 +244,19 @@ py manage.py collectstatic --noinput
 ```
 
 Configure the production platform or web server to serve `STATIC_ROOT` and `MEDIA_ROOT`. Back up the media folder and database because both contain managed project content.
+
+## Vercel deployment
+
+The project is prepared for Vercel's current zero-configuration Django runtime. It includes:
+
+- automatic ASGI entry-point detection
+- Vercel CDN-compatible static collection
+- PostgreSQL support through `DATABASE_URL`
+- secure Vercel proxy and HTTPS settings
+- optional durable S3-compatible storage for admin-uploaded images
+- Python 3.12 runtime selection
+
+Vercel must be connected to a persistent Postgres database before deployment. For the complete dashboard, environment-variable, migration and superuser sequence, follow [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Tests and checks
 
