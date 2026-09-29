@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "ecofem_project/asgi.py": {
+      "maxDuration": 30,
+      "excludeFiles": "{ecofem/tests.py,README.md,DEPLOYMENT.md,media/**,static/**}"
+    }
+  }
+}

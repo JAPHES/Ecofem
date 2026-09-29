@@ -16,6 +16,9 @@ staticfiles/
 
 # Environment and tooling
 .env
+.env.local
+.env.*.local
+.vercel/
 .idea/
 .vscode/
 .DS_Store
