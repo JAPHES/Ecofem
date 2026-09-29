@@ -274,6 +274,20 @@ p:last-child {
     transform: translate(3px, -1px);
 }
 
+.profile-link-disabled,
+.profile-link-disabled:disabled {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--rose);
+    cursor: not-allowed;
+    opacity: 0.72;
+}
+
+.profile-link-disabled:hover i {
+    transform: none;
+}
+
 .message-wrap {
     position: fixed;
     z-index: 1050;
