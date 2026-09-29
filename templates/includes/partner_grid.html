@@ -1,15 +1,16 @@
+{% load static %}
 {% if partners %}
 <div class="row g-3 justify-content-center">
     {% for partner in partners %}
         <div class="col-6 col-md-4 col-lg-3">
             <article class="partner-card h-100 reveal">
                 {% if partner.logo %}
-                    <img src="{{ partner.logo.url }}" alt="{{ partner.name }} logo" loading="lazy">
+                    <img src="{% static partner.logo %}" alt="{{ partner.name }} logo" loading="lazy">
                 {% else %}
                     <div class="partner-monogram" aria-hidden="true">{{ partner.name|slice:":1" }}</div>
                 {% endif %}
                 <h3 class="h6 mb-1">{{ partner.name }}</h3>
-                <span>{{ partner.get_partner_type_display }}</span>
+                <span>{{ partner.partner_type }}</span>
                 {% if partner.website_url %}<a class="stretched-link" href="{{ partner.website_url }}" target="_blank" rel="noopener" aria-label="Visit {{ partner.name }} website"></a>{% endif %}
             </article>
         </div>

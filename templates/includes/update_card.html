@@ -1,7 +1,8 @@
+{% load static %}
 <article class="update-card h-100 reveal">
     <div class="update-image-wrap">
         {% if update.featured_image %}
-            <img src="{{ update.featured_image.url }}" alt="{{ update.title }}" class="update-image" loading="lazy">
+            <img src="{% static update.featured_image %}" alt="{{ update.title }}" class="update-image" loading="lazy">
         {% else %}
             <div class="image-placeholder update-placeholder" role="img" aria-label="Update image placeholder">
                 <i class="bi bi-journal-text"></i>
@@ -13,6 +14,6 @@
         <time datetime="{{ update.publication_date|date:'Y-m-d' }}">{{ update.publication_date|date:"F j, Y" }}</time>
         <h2 class="h4">{{ update.title }}</h2>
         <p>{{ update.short_description|truncatewords:24 }}</p>
-        <a href="{{ update.get_absolute_url }}" class="stretched-link arrow-link" aria-label="Read {{ update.title }}">Read more <i class="bi bi-arrow-up-right"></i></a>
+        <a href="{% url 'ecofem:update_detail' update.slug %}" class="stretched-link arrow-link" aria-label="Read {{ update.title }}">Read more <i class="bi bi-arrow-up-right"></i></a>
     </div>
 </article>

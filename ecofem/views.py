@@ -1,51 +1,44 @@
-from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, redirect, render
-from django.utils import timezone
+from django.http import Http404
+from django.shortcuts import render
 
-from .forms import ContactForm
-from .models import GalleryImage, Partner, SiteSettings, TeamMember, Update
+from .content import GALLERY_IMAGES, PARTNERS, TEAM_MEMBERS, UPDATES
+
+
+def _active_team():
+    return [member for member in TEAM_MEMBERS if member.get("is_active", True)]
+
+
+def _published_updates():
+    return [update for update in UPDATES if update.get("is_published", True)]
 
 
 def home(request):
-    today = timezone.localdate()
-    active_team = TeamMember.objects.filter(is_active=True)
-    partners = Partner.objects.filter(active=True)
-    updates = Update.objects.filter(is_published=True, publication_date__lte=today)
-    project_settings = SiteSettings.objects.first()
-    active_team_count = active_team.count()
-    active_partner_count = partners.count()
+    team = _active_team()
+    updates = _published_updates()
     context = {
-        "featured_members": active_team.filter(is_featured=True)[:4],
+        "featured_members": [
+            member for member in team if member.get("is_featured", False)
+        ][:4],
         "latest_updates": updates[:3],
-        "partners": partners[:8],
-        "active_team_count": active_team_count,
-        "active_partner_count": active_partner_count,
-        "published_update_count": updates.count(),
-        "project_settings": project_settings,
-        "show_statistics": (
-            active_team_count > 0
-            or active_partner_count > 0
-            or (
-                project_settings
-                and (
-                    project_settings.prototypes_developed is not None
-                    or project_settings.tests_conducted is not None
-                )
-            )
-        ),
+        "partners": PARTNERS[:8],
     }
     return render(request, "ecofem/home.html", context)
 
 
 def about(request):
+    project_lead = next(
+        (
+            member
+            for member in _active_team()
+            if member.get("is_founder_or_lead", False)
+        ),
+        None,
+    )
     context = {
-        "project_settings": SiteSettings.objects.first(),
-        "project_lead": TeamMember.objects.filter(
-            is_active=True, is_founder_or_lead=True
-        ).first(),
-        "partners": Partner.objects.filter(active=True),
-        "gallery_images": GalleryImage.objects.filter(active=True)[:6],
+        "project_lead": project_lead,
+        "partners": PARTNERS,
+        "gallery_images": GALLERY_IMAGES[:6],
     }
     return render(request, "ecofem/about.html", context)
 
@@ -55,51 +48,38 @@ def innovation(request):
 
 
 def impact(request):
-    return render(
-        request,
-        "ecofem/impact.html",
-        {"partners": Partner.objects.filter(active=True)[:8]},
-    )
+    return render(request, "ecofem/impact.html", {"partners": PARTNERS[:8]})
 
 
 def team_list(request):
-    members = TeamMember.objects.filter(is_active=True)
-    return render(request, "ecofem/team_list.html", {"members": members})
+    return render(request, "ecofem/team_list.html", {"members": _active_team()})
 
 
 def team_detail(request, slug):
-    member = get_object_or_404(TeamMember, slug=slug, is_active=True)
+    member = next(
+        (member for member in _active_team() if member.get("slug") == slug),
+        None,
+    )
+    if member is None:
+        raise Http404("Team member not found")
     return render(request, "ecofem/team_detail.html", {"member": member})
 
 
 def update_list(request):
-    updates = Update.objects.filter(
-        is_published=True,
-        publication_date__lte=timezone.localdate(),
-    )
-    page_obj = Paginator(updates, 6).get_page(request.GET.get("page"))
-    gallery_images = GalleryImage.objects.filter(active=True)[:6]
+    page_obj = Paginator(_published_updates(), 6).get_page(request.GET.get("page"))
     return render(
         request,
         "ecofem/update_list.html",
-        {"page_obj": page_obj, "gallery_images": gallery_images},
+        {"page_obj": page_obj, "gallery_images": GALLERY_IMAGES[:6]},
     )
 
 
 def update_detail(request, slug):
-    update = get_object_or_404(
-        Update,
-        slug=slug,
-        is_published=True,
-        publication_date__lte=timezone.localdate(),
-    )
-    related_updates = (
-        Update.objects.filter(
-            is_published=True,
-            publication_date__lte=timezone.localdate(),
-        )
-        .exclude(pk=update.pk)[:3]
-    )
+    updates = _published_updates()
+    update = next((item for item in updates if item.get("slug") == slug), None)
+    if update is None:
+        raise Http404("Update not found")
+    related_updates = [item for item in updates if item is not update][:3]
     return render(
         request,
         "ecofem/update_detail.html",
@@ -108,19 +88,7 @@ def update_detail(request, slug):
 
 
 def contact(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(
-                request,
-                "Thank you for reaching out. Your message has been received, "
-                "and the EcoFem team will respond as soon as possible.",
-            )
-            return redirect("ecofem:contact")
-    else:
-        form = ContactForm()
-    return render(request, "ecofem/contact.html", {"form": form})
+    return render(request, "ecofem/contact.html")
 
 
 def custom_404(request, exception):

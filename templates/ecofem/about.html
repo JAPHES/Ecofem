@@ -36,12 +36,7 @@
             </div>
             <div class="col-lg-7 reveal">
                 <div class="story-copy">
-                    {% if project_settings.project_story %}
-                        {{ project_settings.project_story|linebreaks }}
-                    {% else %}
-                        <p>EcoFem began with a practical question: could a problematic plant biomass be transformed into a useful material for a product women rely on every month?</p>
-                        <p>That question led to research into water hyacinth fibres, absorbent-core development and sanitary pad prototyping. The work continues through comparison, testing and improvement—with affordability, comfort and environmental responsibility guiding each decision.</p>
-                    {% endif %}
+                    {{ site.project_story|linebreaks }}
                 </div>
             </div>
         </div>
@@ -51,8 +46,8 @@
 <section class="section">
     <div class="container">
         <div class="row g-4">
-            <div class="col-lg-6"><article class="purpose-card mission h-100 reveal"><span class="purpose-icon"><i class="bi bi-compass"></i></span><span class="eyebrow">Our mission</span><h2>Make sustainable care more accessible.</h2><p>{% if project_settings %}{{ project_settings.mission }}{% else %}To develop accessible, sustainable and high-performing menstrual hygiene solutions while transforming environmental waste into useful resources.{% endif %}</p></article></div>
-            <div class="col-lg-6"><article class="purpose-card vision h-100 reveal"><span class="purpose-icon"><i class="bi bi-eye"></i></span><span class="eyebrow eyebrow-light">Our vision</span><h2>Choice without compromise.</h2><p>{% if project_settings %}{{ project_settings.vision }}{% else %}A future where every woman and girl can access safe and affordable menstrual products without compromising the environment.{% endif %}</p></article></div>
+            <div class="col-lg-6"><article class="purpose-card mission h-100 reveal"><span class="purpose-icon"><i class="bi bi-compass"></i></span><span class="eyebrow">Our mission</span><h2>Make sustainable care more accessible.</h2><p>{{ site.mission }}</p></article></div>
+            <div class="col-lg-6"><article class="purpose-card vision h-100 reveal"><span class="purpose-icon"><i class="bi bi-eye"></i></span><span class="eyebrow eyebrow-light">Our vision</span><h2>Choice without compromise.</h2><p>{{ site.vision }}</p></article></div>
         </div>
     </div>
 </section>
@@ -61,11 +56,7 @@
     <div class="container">
         <div class="section-heading text-center reveal"><span class="eyebrow">What guides us</span><h2 class="section-title">Values behind every decision</h2></div>
         <div class="values-grid">
-            {% if project_settings %}
-                {% for value in project_settings.value_list %}<div class="value-pill reveal"><span>{{ forloop.counter|stringformat:"02d" }}</span>{{ value }}</div>{% endfor %}
-            {% else %}
-                <div class="value-pill reveal"><span>01</span>Innovation</div><div class="value-pill reveal"><span>02</span>Sustainability</div><div class="value-pill reveal"><span>03</span>Dignity</div><div class="value-pill reveal"><span>04</span>Inclusivity</div><div class="value-pill reveal"><span>05</span>Quality</div><div class="value-pill reveal"><span>06</span>Community Impact</div>
-            {% endif %}
+            {% for value in site.values %}<div class="value-pill reveal"><span>{{ forloop.counter|stringformat:"02d" }}</span>{{ value }}</div>{% endfor %}
         </div>
     </div>
 </section>
@@ -77,9 +68,9 @@
             <article class="leader-profile reveal">
                 <div class="row g-0 align-items-stretch">
                     <div class="col-lg-5">
-                        {% if project_lead.profile_photo %}<img src="{{ project_lead.profile_photo.url }}" alt="Portrait of {{ project_lead.full_name }}" class="leader-photo">{% else %}<div class="image-placeholder leader-placeholder"><i class="bi bi-person"></i></div>{% endif %}
+                        {% if project_lead.profile_photo %}<img src="{% static project_lead.profile_photo %}" alt="Portrait of {{ project_lead.full_name }}" class="leader-photo">{% else %}<div class="image-placeholder leader-placeholder"><i class="bi bi-person"></i></div>{% endif %}
                     </div>
-                    <div class="col-lg-7"><div class="leader-copy"><span class="role-badge d-inline-block position-static mb-3">Founder / Project Lead</span><h3>{{ project_lead.full_name }}</h3><p class="team-role">{{ project_lead.role }}</p><p>{{ project_lead.leadership_story|default:project_lead.short_bio }}</p>{% if project_lead.vision_for_ecofem %}<h4>Vision for EcoFem</h4><p>{{ project_lead.vision_for_ecofem }}</p>{% endif %}{% if project_lead.contribution %}<h4>Contribution</h4><p>{{ project_lead.contribution }}</p>{% endif %}<a href="{{ project_lead.get_absolute_url }}" class="arrow-link">View full profile <i class="bi bi-arrow-right"></i></a></div></div>
+                    <div class="col-lg-7"><div class="leader-copy"><span class="role-badge d-inline-block position-static mb-3">Founder / Project Lead</span><h3>{{ project_lead.full_name }}</h3><p class="team-role">{{ project_lead.role }}</p><p>{{ project_lead.leadership_story|default:project_lead.short_bio }}</p>{% if project_lead.vision_for_ecofem %}<h4>Vision for EcoFem</h4><p>{{ project_lead.vision_for_ecofem }}</p>{% endif %}{% if project_lead.contribution %}<h4>Contribution</h4><p>{{ project_lead.contribution }}</p>{% endif %}<a href="{% url 'ecofem:team_detail' project_lead.slug %}" class="arrow-link">View full profile <i class="bi bi-arrow-right"></i></a></div></div>
                 </div>
             </article>
         {% else %}

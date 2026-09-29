@@ -1,10 +1,11 @@
+{% load static %}
 {% if gallery_images %}
 <div class="gallery-grid">
     {% for item in gallery_images %}
         <figure class="gallery-item reveal">
-            <img src="{{ item.image.url }}" alt="{{ item.title }}{% if item.caption %}: {{ item.caption }}{% endif %}" loading="lazy">
+            <img src="{% static item.image %}" alt="{{ item.title }}{% if item.caption %}: {{ item.caption }}{% endif %}" loading="lazy">
             <figcaption>
-                <span>{{ item.get_category_display }}</span>
+                <span>{{ item.category }}</span>
                 <strong>{{ item.title }}</strong>
             </figcaption>
         </figure>

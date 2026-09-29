@@ -46,15 +46,6 @@
         </div>
     </nav>
 
-    <div class="message-wrap container" aria-live="polite">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    </div>
-
     <main id="main-content">
         {% block content %}{% endblock %}
     </main>
@@ -67,7 +58,7 @@
                         <span class="brand-mark brand-mark-light" aria-hidden="true"><i class="bi bi-flower1"></i></span>
                         <span>EcoFem</span>
                     </a>
-                    <p class="footer-intro">{% if ecofem_settings %}{{ ecofem_settings.short_description }}{% else %}Developing affordable, biodegradable sanitary pads using processed water hyacinth fibres.{% endif %}</p>
+                    <p class="footer-intro">{{ site.short_description }}</p>
                     <p class="development-note"><i class="bi bi-info-circle me-2"></i>EcoFem is under development and preparing for further validation and certification.</p>
                 </div>
                 <div class="col-6 col-lg-2 offset-lg-1">
@@ -91,14 +82,14 @@
                 <div class="col-lg-2">
                     <h2 class="footer-heading">Contact</h2>
                     <ul class="footer-links list-unstyled">
-                        <li><i class="bi bi-envelope me-2"></i>{% if ecofem_settings and ecofem_settings.email %}<a href="mailto:{{ ecofem_settings.email }}">{{ ecofem_settings.email }}</a>{% else %}<span>Email to be confirmed</span>{% endif %}</li>
-                        <li><i class="bi bi-geo-alt me-2"></i>{% if ecofem_settings %}{{ ecofem_settings.location }}{% else %}Location to be confirmed{% endif %}</li>
+                        <li><i class="bi bi-envelope me-2"></i>{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% else %}<span>Email to be confirmed</span>{% endif %}</li>
+                        <li><i class="bi bi-geo-alt me-2"></i>{{ site.location }}</li>
                     </ul>
                     <div class="social-links mt-3" aria-label="Social media links">
-                        {% if ecofem_settings.linkedin_url %}<a href="{{ ecofem_settings.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>{% endif %}
-                        {% if ecofem_settings.instagram_url %}<a href="{{ ecofem_settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>{% endif %}
-                        {% if ecofem_settings.facebook_url %}<a href="{{ ecofem_settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>{% endif %}
-                        {% if not ecofem_settings or not ecofem_settings.linkedin_url and not ecofem_settings.instagram_url and not ecofem_settings.facebook_url %}
+                        {% if site.linkedin_url %}<a href="{{ site.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>{% endif %}
+                        {% if site.instagram_url %}<a href="{{ site.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>{% endif %}
+                        {% if site.facebook_url %}<a href="{{ site.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>{% endif %}
+                        {% if not site.linkedin_url and not site.instagram_url and not site.facebook_url %}
                             <span class="social-placeholder" title="LinkedIn link to be confirmed"><i class="bi bi-linkedin"></i></span>
                             <span class="social-placeholder" title="Instagram link to be confirmed"><i class="bi bi-instagram"></i></span>
                             <span class="social-placeholder" title="Facebook link to be confirmed"><i class="bi bi-facebook"></i></span>

@@ -165,19 +165,6 @@
     </div>
 </section>
 
-{% if show_statistics %}
-<section class="stats-strip" aria-label="EcoFem at a glance">
-    <div class="container">
-        <div class="row g-4 text-center justify-content-center">
-            {% if project_settings.prototypes_developed != None %}<div class="col-6 col-lg-3 reveal"><strong>{{ project_settings.prototypes_developed }}</strong><span>Prototypes developed</span></div>{% endif %}
-            {% if project_settings.tests_conducted != None %}<div class="col-6 col-lg-3 reveal"><strong>{{ project_settings.tests_conducted }}</strong><span>Tests conducted</span></div>{% endif %}
-            {% if active_team_count %}<div class="col-6 col-lg-3 reveal"><strong>{{ active_team_count }}</strong><span>Active team members</span></div>{% endif %}
-            {% if active_partner_count %}<div class="col-6 col-lg-3 reveal"><strong>{{ active_partner_count }}</strong><span>Confirmed partners</span></div>{% endif %}
-        </div>
-    </div>
-</section>
-{% endif %}
-
 <section class="section">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5 reveal">
