@@ -4,6 +4,9 @@ from unittest.mock import patch
 from django.conf import settings
 from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
+from django.utils.html import escape
+
+from .content import TEAM_MEMBERS
 
 
 SAMPLE_MEMBER = {
@@ -86,6 +89,26 @@ class PublicPageTests(SimpleTestCase):
 
 
 class CodeManagedContentTests(SimpleTestCase):
+    def test_confirmed_team_members_render_with_photo_placeholders(self):
+        self.assertEqual(len(TEAM_MEMBERS), 10)
+        response = self.client.get(reverse("ecofem:team_list"))
+
+        for member in TEAM_MEMBERS:
+            with self.subTest(member=member["full_name"]):
+                self.assertEqual(member["profile_photo"], "")
+                self.assertContains(response, member["full_name"])
+                self.assertContains(response, member["role"])
+                self.assertContains(response, escape(member["expertise"]))
+
+        self.assertContains(response, "Profile photo placeholder for", count=10)
+
+    def test_project_lead_profile_includes_supplied_experience(self):
+        response = self.client.get(
+            reverse("ecofem:team_detail", args=["yvonne-achieng"])
+        )
+        self.assertContains(response, "Yvonne Achieng’")
+        self.assertContains(response, "applied statistician")
+
     @patch("ecofem.views.TEAM_MEMBERS", [SAMPLE_MEMBER])
     def test_team_profile_uses_code_content_and_static_image(self):
         response = self.client.get(
