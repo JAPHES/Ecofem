@@ -81,8 +81,11 @@ def contact(request):
     return render(request, "ecofem/contact.html")
 
 
-def custom_404(request, exception):
-    return render(request, "errors/404.html", status=404)
+def custom_404(request, exception=None):
+    response = render(request, "errors/404.html", status=404)
+    response["Cache-Control"] = "no-store"
+    response["X-Robots-Tag"] = "noindex, nofollow"
+    return response
 
 
 def custom_500(request):

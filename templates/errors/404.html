@@ -1,3 +1,4 @@
 {% extends "base.html" %}
 {% block title %}Page not found{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
 {% block content %}<section class="error-page"><div class="container text-center"><span class="error-code">404</span><h1>This page has drifted away.</h1><p>We could not find the page you requested, but there is plenty more to explore.</p><a href="{% url 'ecofem:home' %}" class="btn btn-brand btn-lg">Return home</a></div></section>{% endblock %}
