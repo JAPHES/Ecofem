@@ -35,8 +35,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const subject = new URLSearchParams(window.location.search).get("subject");
-    const subjectField = document.querySelector("#id_subject");
+    const subjectField = document.querySelector("#contactSubject");
     if (subject && subjectField && !subjectField.value) {
         subjectField.value = subject;
     }
+
+    const contactForm = document.querySelector("#contactForm");
+    contactForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!contactForm.reportValidity()) return;
+
+        const fields = new FormData(contactForm);
+        const recipient = contactForm.dataset.recipient;
+        const emailSubject = fields.get("subject");
+        const body = [
+            `Name: ${fields.get("name")}`,
+            `Email: ${fields.get("email")}`,
+            `Organisation: ${fields.get("organisation") || "Not provided"}`,
+            "",
+            fields.get("message"),
+        ].join("\n");
+
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(body)}`;
+    });
 });
