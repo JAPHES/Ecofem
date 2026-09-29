@@ -1,35 +1,34 @@
 # EcoFem Website
 
-EcoFem is a Django-powered informational website for a menstrual-health and circular-materials innovation developing biodegradable sanitary pad prototypes with processed water hyacinth fibres.
+EcoFem is a responsive Django informational website for a menstrual-health and
+circular-materials innovation developing biodegradable sanitary pad prototypes
+with processed water hyacinth fibres.
 
-This first MVP is designed to build awareness and trust, explain the innovation responsibly, introduce the project team, document progress, showcase confirmed partners, publish updates and receive enquiries. It is **not** an e-commerce platform and contains no public accounts, ordering, payments, inventory or team-member login system.
+This version is deliberately **database-free**. It has no admin area, accounts,
+database, migrations, uploads, object storage, checkout or payments. Public
+content is edited in `ecofem/content.py`, while all images are committed under
+`static/images/`.
 
-## Features
+## Pages and features
 
-- Responsive Home, About, Innovation, Impact, Team, Updates and Contact pages
-- Database-managed team profiles with featured and project-lead controls
-- Dedicated, slug-based team member profile pages
-- Database-managed partners and supporters
-- Publishable, slug-based project updates with draft and future-post protection
-- Categorised project gallery
-- Contact form with CSRF protection, validation, success feedback and database storage
-- Admin-editable mission, vision, values, project story, contact details and verified statistics
-- Customised Django admin lists, filters, search, ordering and content fieldsets
-- Responsive Bootstrap 5 interface with an EcoFem-specific design system
-- Semantic page titles, descriptions, Open Graph metadata and accessible image labels
+- Home, About, Innovation, Impact, Team, Updates and Contact pages
+- Optional code-managed team profiles and update detail pages
+- Optional code-managed partner and gallery sections
+- Static CSS, JavaScript, brand artwork and content images
+- Responsive Bootstrap 5 design and accessible markup
+- SEO descriptions, canonical URLs and Open Graph metadata
 - Custom 404 and 500 pages
-- Automated tests for all public routes, protected content states, contact submissions, slugs and admin registration
-- Careful product language that distinguishes prototypes, testing and certification preparation
+- A contact composer that opens the visitor's email app
+- No server-side storage of contact details
+- Automated tests that run without creating a test database
 
-## Technology stack
+## Technology
 
-- Python 3.10+
+- Python 3.12
 - Django 5.2 LTS
-- SQLite for local development
-- Pillow for image uploads
-- python-dotenv for environment configuration
-- Bootstrap 5, Bootstrap Icons and custom CSS
-- Vanilla JavaScript for subtle reveal effects, navbar state and mobile navigation
+- python-dotenv
+- Bootstrap 5 and Bootstrap Icons
+- Custom CSS and vanilla JavaScript
 
 ## Project structure
 
@@ -37,261 +36,194 @@ This first MVP is designed to build awareness and trust, explain the innovation 
 ECOFEM/
 ├── manage.py
 ├── ecofem_project/
-│   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
 │   ├── asgi.py
 │   └── wsgi.py
 ├── ecofem/
-│   ├── migrations/
-│   │   ├── __init__.py
-│   │   └── 0001_initial.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
+│   ├── content.py        # Edit public content here
 │   ├── context_processors.py
-│   ├── forms.py
-│   ├── models.py
 │   ├── tests.py
 │   ├── urls.py
 │   └── views.py
 ├── templates/
 │   ├── base.html
 │   ├── ecofem/
-│   │   ├── home.html
-│   │   ├── about.html
-│   │   ├── innovation.html
-│   │   ├── impact.html
-│   │   ├── team_list.html
-│   │   ├── team_detail.html
-│   │   ├── update_list.html
-│   │   ├── update_detail.html
-│   │   └── contact.html
 │   ├── includes/
-│   │   ├── page_header.html
-│   │   ├── team_card.html
-│   │   ├── update_card.html
-│   │   ├── partner_grid.html
-│   │   ├── gallery.html
-│   │   └── get_involved.html
 │   └── errors/
-│       ├── 404.html
-│       └── 500.html
 ├── static/
 │   ├── css/main.css
 │   ├── js/main.js
 │   └── images/
-│       ├── ecofem-hero.png
-│       ├── water-hyacinth-process.png
-│       └── favicon.svg
-├── media/
 ├── .env.example
-├── .gitignore
-├── requirements.txt
-└── README.md
+├── .python-version
+├── vercel.json
+├── DEPLOYMENT.md
+└── requirements.txt
 ```
 
-## Windows setup
+## Run on Windows
 
-Open PowerShell in the project folder.
-
-### 1. Create and activate a virtual environment
+Open PowerShell in the folder that contains `manage.py`:
 
 ```powershell
+cd C:\Users\User\OneDrive\Desktop\ECOFEM
 py -m venv venv
 venv\Scripts\Activate.ps1
-```
-
-If PowerShell blocks activation for the current session:
-
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-venv\Scripts\Activate.ps1
-```
-
-### 2. Install dependencies
-
-```powershell
-py -m pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-### 3. Create the local environment file
-
-```powershell
 Copy-Item .env.example .env
-```
-
-Generate a strong development/production secret with:
-
-```powershell
-py -c "from secrets import token_urlsafe; print(token_urlsafe(50))"
-```
-
-Paste that value into `DJANGO_SECRET_KEY` in `.env`.
-
-### 4. Apply database migrations
-
-```powershell
-py manage.py migrate
-```
-
-When models change later, use:
-
-```powershell
-py manage.py makemigrations
-py manage.py migrate
-```
-
-### 5. Create the admin account
-
-```powershell
-py manage.py createsuperuser
-```
-
-Enter the requested username, email and password. This Django superuser is the only account type required for the MVP.
-
-### 6. Run the development server
-
-```powershell
 py manage.py runserver
 ```
 
-Visit:
+Open <http://127.0.0.1:8000/>. There is no `migrate` or `createsuperuser`
+step because this version does not use a database or Django admin.
 
-- Website: `http://127.0.0.1:8000/`
-- Admin: `http://127.0.0.1:8000/admin/`
-
-## Environment variables
-
-| Variable | Purpose | Development example |
-|---|---|---|
-| `DJANGO_SECRET_KEY` | Cryptographic signing secret | Generate a unique random value |
-| `DJANGO_DEBUG` | Enables development diagnostics | `True` |
-| `DJANGO_ALLOWED_HOSTS` | Comma-separated hostnames | `127.0.0.1,localhost` |
-| `DJANGO_TIME_ZONE` | Project time zone | `Africa/Nairobi` |
-| `DJANGO_SECURE_SSL_REDIRECT` | Redirect HTTP to HTTPS | `False` locally; normally `True` in production |
-
-Never commit `.env`. For production, set `DJANGO_DEBUG=False`, use a unique secret, list the real domain in `DJANGO_ALLOWED_HOSTS`, serve over HTTPS and configure a production web server to serve collected static files and uploaded media.
-
-## Managing website content
-
-Sign in at `/admin/` using the superuser account.
-
-### Site settings
-
-Open **Site settings** and create the single project settings record. This controls:
-
-- short project description
-- project story
-- mission, vision and values
-- public email, phone, location and social links
-- optional verified counts for prototypes and tests
-
-Enter one project value per line. Leave prototype and test figures blank until confirmed; blank figures are not shown publicly.
-
-### Adding EcoFem team members
-
-1. Open **Team members** and select **Add team member**.
-2. Enter the confirmed name, role and expertise.
-3. Upload a professional portrait.
-4. Add a concise biography, professional background and contribution.
-5. For the founder or project lead, enable **Is founder or lead** and add the leadership story and EcoFem vision.
-6. Enable **Is featured** to show the person on the homepage. The homepage displays up to four featured people.
-7. Set **Display order**; lower numbers appear first.
-8. Keep **Is active** enabled when the profile is ready to publish.
-
-Team members do not receive accounts and never need to sign in. They are public website content managed by the Django administrator.
-
-### Adding confirmed partners
-
-1. Open **Partners** and select **Add partner**.
-2. Enter the confirmed organisation name, type and description.
-3. Upload its approved logo and add its official website if available.
-4. Set the display order and keep **Active** enabled to show it publicly.
-
-Do not add an organisation until the relationship and logo usage are confirmed.
-
-### Publishing updates
-
-1. Open **Updates** and select **Add update**.
-2. Add the title, image, short card description, full content, date and author.
-3. Optionally mark the post as featured.
-4. Enable **Is published** only when the content is approved.
-
-Drafts and posts with future publication dates are not visible on the public site. The three latest eligible posts appear automatically on the homepage.
-
-### Adding gallery images
-
-Open **Gallery images**, upload an approved image, add useful alt-friendly title and caption text, choose its category, and set its display order. Only active images appear publicly.
-
-### Reviewing contact messages
-
-Open **Contact messages** to search and review enquiries. Visitor-submitted details are read-only except for the **Is read** tracking flag. There is no visitor account and no automatic email sending in this MVP.
-
-## Static and media files
-
-- Source static assets live in `static/`.
-- Admin-uploaded content is stored in `media/` during local development.
-- Django serves media automatically only when local `DEBUG=True`.
-- Uploaded files are intentionally ignored by Git except for `media/.gitkeep`.
-- On Vercel, configure the included S3-compatible storage settings before uploading production media.
-
-For a deployment build:
-
-```powershell
-py manage.py collectstatic --noinput
-```
-
-Configure the production platform or web server to serve `STATIC_ROOT` and `MEDIA_ROOT`. Back up the media folder and database because both contain managed project content.
-
-## Vercel deployment
-
-The project is prepared for Vercel's current zero-configuration Django runtime. It includes:
-
-- automatic ASGI entry-point detection
-- Vercel CDN-compatible static collection
-- PostgreSQL support through `DATABASE_URL`
-- secure Vercel proxy and HTTPS settings
-- optional durable S3-compatible storage for admin-uploaded images
-- Python 3.12 runtime selection
-
-Vercel must be connected to a persistent Postgres database before deployment. For the complete dashboard, environment-variable, migration and superuser sequence, follow [DEPLOYMENT.md](DEPLOYMENT.md).
-
-## Tests and checks
-
-Run the automated suite:
-
-```powershell
-py manage.py test
-```
-
-Run Django's deployment-oriented checks before launch:
+Run checks with:
 
 ```powershell
 py manage.py check
-py manage.py check --deploy
+py manage.py test
 ```
 
-The normal `--deploy` warnings about HTTPS and cookie security should be addressed in the actual hosting environment, not by weakening local development settings.
+## Edit site details
 
-## Content and image placeholders to replace
+Open `ecofem/content.py` and update the `SITE` dictionary. This controls the
+mission, vision, story, values, contact details and social links.
 
-Before public launch, review or replace:
+Set the real email before launch:
 
-- the generated concept hero and water-hyacinth process images with approved EcoFem photography, if available
-- the favicon/logo placeholder with the final EcoFem brand assets
-- placeholder email and location in Site settings
-- all social media URLs
-- the project story and official leadership profile
-- confirmed team biographies and profile photos
-- confirmed partner names, descriptions, websites and approved logos
-- real project updates and gallery photographs
-- verified prototype/test counts, or leave them blank
-- any hosting-specific Open Graph absolute image URL and domain configuration
+```python
+"email": "hello@your-real-domain.org",
+```
 
-No sample people, organisations, certifications, regulatory approvals, test figures or news posts are inserted into the production database.
+When an email is present, the Contact form builds a `mailto:` link and opens
+the visitor's own email application. The website does not receive or store the
+form values.
 
-## Product-claim policy
+## Add a team member
 
-Public copy deliberately uses language such as “under development,” “prototype,” “being tested,” “aims to” and “preparing for certification.” Do not change this to “medically approved,” “clinically proven,” “certified,” “completely safe” or similar language unless the claim is verified and documented.
+1. Copy the approved profile photo to `static/images/team/`.
+2. Add an entry to `TEAM_MEMBERS` in `ecofem/content.py`.
+3. Restart the local development server if needed.
+
+```python
+TEAM_MEMBERS = [
+    {
+        "full_name": "Replace With Confirmed Name",
+        "slug": "confirmed-name",
+        "profile_photo": "images/team/confirmed-name.jpg",
+        "role": "Confirmed EcoFem Role",
+        "expertise": "Confirmed Area of Expertise",
+        "short_bio": "Approved concise biography.",
+        "professional_background": "Approved professional background.",
+        "contribution": "What this person brings to EcoFem.",
+        "leadership_story": "",
+        "vision_for_ecofem": "",
+        "email": "",
+        "linkedin_url": "",
+        "is_founder_or_lead": False,
+        "is_featured": True,
+        "is_active": True,
+    },
+]
+```
+
+Use a unique lowercase slug with hyphens. Set `is_founder_or_lead` to `True`
+for the one confirmed founder/project lead. Up to four featured people appear
+on the homepage.
+
+## Add an update
+
+Copy its image to `static/images/updates/`, import `date` at the top of
+`content.py`, and add an entry to `UPDATES`:
+
+```python
+from datetime import date
+
+UPDATES = [
+    {
+        "title": "Confirmed update title",
+        "slug": "confirmed-update-title",
+        "featured_image": "images/updates/confirmed-update.jpg",
+        "short_description": "A concise, factual summary.",
+        "content": "The approved full update text.",
+        "publication_date": date(2026, 1, 15),
+        "author": "EcoFem Team",
+        "is_featured": False,
+        "is_published": True,
+    },
+]
+```
+
+Keep newest entries first. Leave `UPDATES` empty until real news is approved.
+
+## Add a partner
+
+Copy the approved logo to `static/images/partners/`, then add:
+
+```python
+PARTNERS = [
+    {
+        "name": "Confirmed Organisation",
+        "logo": "images/partners/organisation-logo.png",
+        "partner_type": "Research",
+        "website_url": "https://organisation.example/",
+    },
+]
+```
+
+Do not add organisations or logos until the relationship and usage permission
+are confirmed.
+
+## Add gallery images
+
+Copy approved photographs to `static/images/gallery/`, then add:
+
+```python
+GALLERY_IMAGES = [
+    {
+        "image": "images/gallery/prototype-session.jpg",
+        "title": "Prototype development session",
+        "caption": "Approved descriptive caption.",
+        "category": "Prototype",
+    },
+]
+```
+
+## Replace existing artwork
+
+Current project assets are in `static/images/`. You can replace them while
+keeping the same filenames, or update their template paths:
+
+- `ecofem-hero.png`
+- `water-hyacinth-process.png`
+- `favicon.svg`
+
+Commit every new static image to Git so Vercel can deploy it. Do not place
+content images in a `media` directory because this version has no upload/media
+storage system.
+
+## Environment variables
+
+| Variable | Purpose |
+|---|---|
+| `DJANGO_SECRET_KEY` | Unique secret used internally by Django |
+| `DJANGO_DEBUG` | `True` locally and `False` in production |
+| `DJANGO_ALLOWED_HOSTS` | Optional comma-separated custom hostnames |
+| `DJANGO_TIME_ZONE` | Defaults to `Africa/Nairobi` |
+| `DJANGO_SECURE_SSL_REDIRECT` | Normally `True` on Vercel |
+| `SITE_URL` | Public base URL used in canonical and social metadata |
+
+No database or storage environment variables are used.
+
+## Deployment
+
+Follow [DEPLOYMENT.md](DEPLOYMENT.md). Vercel only needs the GitHub repository
+and a few Django environment variables—no Postgres, SQLite, migrations, admin
+account, S3 bucket or storage integration.
+
+## Claims policy
+
+The website describes EcoFem as under development, being tested and preparing
+for certification. Do not publish medical approval, clinical proof, safety,
+certification, partnership or numerical impact claims unless they are verified.
