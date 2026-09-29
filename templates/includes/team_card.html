@@ -1,4 +1,5 @@
 {% load static %}
+{% url 'ecofem:team_list' as team_page_url %}
 <article class="team-card h-100 reveal">
     <div class="team-photo-wrap">
         {% if member.profile_photo %}
@@ -14,6 +15,12 @@
         <h2 class="h4">{{ member.full_name }}</h2>
         <p class="team-role">{{ member.role }}</p>
         <p class="expertise"><i class="bi bi-stars me-2"></i>{{ member.expertise }}</p>
+        <div class="team-social-links" aria-label="Social media links for {{ member.full_name }}">
+            <a href="{{ member.linkedin_url|default:team_page_url }}" class="team-social-link" {% if member.linkedin_url %}target="_blank" rel="noopener"{% endif %} aria-label="LinkedIn for {{ member.full_name }}"><i class="bi bi-linkedin"></i></a>
+            <a href="{{ member.instagram_url|default:team_page_url }}" class="team-social-link" {% if member.instagram_url %}target="_blank" rel="noopener"{% endif %} aria-label="Instagram for {{ member.full_name }}"><i class="bi bi-instagram"></i></a>
+            <a href="{{ member.twitter_url|default:team_page_url }}" class="team-social-link" {% if member.twitter_url %}target="_blank" rel="noopener"{% endif %} aria-label="Twitter for {{ member.full_name }}"><i class="bi bi-twitter-x"></i></a>
+            <a href="{{ member.facebook_url|default:team_page_url }}" class="team-social-link" {% if member.facebook_url %}target="_blank" rel="noopener"{% endif %} aria-label="Facebook for {{ member.full_name }}"><i class="bi bi-facebook"></i></a>
+        </div>
         <button type="button" class="arrow-link profile-link-disabled" disabled aria-disabled="true">View profile <i class="bi bi-arrow-up-right"></i></button>
     </div>
 </article>

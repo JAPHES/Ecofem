@@ -870,6 +870,31 @@ p:last-child {
     font-size: 0.85rem;
 }
 
+.team-social-links {
+    display: flex;
+    gap: 0.55rem;
+    margin-bottom: 1.15rem;
+}
+
+.team-social-link {
+    display: inline-grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid rgba(142, 53, 87, 0.2);
+    border-radius: 50%;
+    background: var(--rose-light);
+    color: var(--rose);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.team-social-link:hover,
+.team-social-link:focus-visible {
+    background: var(--rose);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
 .update-image,
 .update-placeholder {
     width: 100%;
