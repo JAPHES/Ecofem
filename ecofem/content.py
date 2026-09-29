@@ -52,6 +52,30 @@ SITE = {
 # until approved portraits are added under static/images/team/.
 TEAM_MEMBERS = [
     {
+        "full_name": "Vitalice Octor",
+        "slug": "vitalice-octor",
+        "profile_photo": "",
+        "role": "Innovator",
+        "expertise": "Natural Material Expert",
+        "short_bio": (
+            "Vitalice serves as EcoFem's Innovator with expertise in natural "
+            "materials."
+        ),
+        "professional_background": (
+            "Experience with biomaterials engineering will be key in process "
+            "design, experimental optimization, equipment design, and "
+            "fabrication."
+        ),
+        "contribution": "",
+        "leadership_story": "",
+        "vision_for_ecofem": "",
+        "email": "",
+        "linkedin_url": "",
+        "is_founder_or_lead": True,
+        "is_featured": True,
+        "is_active": True,
+    },
+    {
         "full_name": "Yvonne Achieng’",
         "slug": "yvonne-achieng",
         "profile_photo": "",
@@ -65,30 +89,6 @@ TEAM_MEMBERS = [
             "Experience as an applied statistician will be key in production "
             "and sales data analytics, product research and development, "
             "funds appropriation, and accounting."
-        ),
-        "contribution": "",
-        "leadership_story": "",
-        "vision_for_ecofem": "",
-        "email": "",
-        "linkedin_url": "",
-        "is_founder_or_lead": True,
-        "is_featured": True,
-        "is_active": True,
-    },
-    {
-        "full_name": "Vitalice Octor",
-        "slug": "vitalice-octor",
-        "profile_photo": "",
-        "role": "Innovator",
-        "expertise": "Natural Material Expert",
-        "short_bio": (
-            "Vitalice serves as an EcoFem Innovator with expertise in natural "
-            "materials."
-        ),
-        "professional_background": (
-            "Experience with biomaterials engineering will be key in process "
-            "design, experimental optimization, equipment design, and "
-            "fabrication."
         ),
         "contribution": "",
         "leadership_story": "",
@@ -197,13 +197,13 @@ TEAM_MEMBERS = [
         "is_active": True,
     },
     {
-        "full_name": "James Murithi",
-        "slug": "james-murithi",
+        "full_name": "Japhes Murithi",
+        "slug": "japhes-murithi",
         "profile_photo": "",
         "role": "IT Expert",
         "expertise": "Digital Marketing Expertise",
         "short_bio": (
-            "James supports EcoFem as an IT Expert with digital marketing "
+            "Japhes supports EcoFem as an IT Expert with digital marketing "
             "expertise."
         ),
         "professional_background": (

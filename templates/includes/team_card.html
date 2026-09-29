@@ -8,12 +8,11 @@
                 <i class="bi bi-person"></i>
             </div>
         {% endif %}
-        {% if member.is_founder_or_lead %}<span class="role-badge">Project leadership</span>{% endif %}
+        {% if member.is_founder_or_lead %}<span class="role-badge">Founder</span>{% endif %}
     </div>
     <div class="team-card-body">
         <h2 class="h4">{{ member.full_name }}</h2>
         <p class="team-role">{{ member.role }}</p>
         <p class="expertise"><i class="bi bi-stars me-2"></i>{{ member.expertise }}</p>
-        <a href="{% url 'ecofem:team_detail' member.slug %}" class="stretched-link arrow-link" aria-label="View profile for {{ member.full_name }}">View profile <i class="bi bi-arrow-up-right"></i></a>
     </div>
 </article>
