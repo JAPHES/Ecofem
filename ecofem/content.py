@@ -54,7 +54,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Octor Vitalice",
         "slug": "octor-vitalice",
-        "profile_photo": "",
+        "profile_photo": "images/team/octor-vitalice.jpeg",
         "role": "Innovator",
         "expertise": "Natural Material Expert",
         "short_bio": (
@@ -79,7 +79,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Professor Alunda",
         "slug": "professor-alunda",
-        "profile_photo": "",
+        "profile_photo": "images/team/professor-alunda.jpeg",
         "role": "Co-Founder",
         "expertise": "Profile details to be confirmed",
         "short_bio": "Professor Alunda serves as a Co-Founder of EcoFem.",
@@ -95,9 +95,26 @@ TEAM_MEMBERS = [
         "is_active": True,
     },
     {
+        "full_name": "Dickens Agumba",
+        "slug": "dickens-agumba",
+        "profile_photo": "images/team/dickens-agumba.jpeg",
+        "role": "Co-Innovator",
+        "expertise": "Profile details to be confirmed",
+        "short_bio": "Dickens serves as a Co-Innovator at EcoFem.",
+        "professional_background": "",
+        "contribution": "",
+        "leadership_story": "",
+        "vision_for_ecofem": "",
+        "email": "",
+        "linkedin_url": "",
+        "is_founder_or_lead": False,
+        "is_featured": True,
+        "is_active": True,
+    },
+    {
         "full_name": "Yvonne Achieng’",
         "slug": "yvonne-achieng",
-        "profile_photo": "",
+        "profile_photo": "images/team/yvonne-achieng.jpeg",
         "role": "Project Lead",
         "expertise": "Data Analysis",
         "short_bio": (
@@ -121,7 +138,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Koti Matata",
         "slug": "koti-matata",
-        "profile_photo": "",
+        "profile_photo": "images/team/koti-matata.jpeg",
         "role": "Technologist",
         "expertise": "Chemistry Expert",
         "short_bio": (
@@ -145,7 +162,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Victor Orwa",
         "slug": "victor-orwa",
-        "profile_photo": "",
+        "profile_photo": "images/team/victor-orwa.jpeg",
         "role": "Engineering Technologist",
         "expertise": "Equipment Designer",
         "short_bio": (
