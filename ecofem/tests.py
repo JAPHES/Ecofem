@@ -152,8 +152,8 @@ class CodeManagedContentTests(SimpleTestCase):
 
         approved_photos = {
             "Octor Vitalice": "images/team/octor-vitalice.jpeg",
-            "Professor Alunda": "images/team/professor-alunda.jpeg",
-            "Dickens Agumba": "images/team/dickens-agumba.jpeg",
+            "Prof. Bernard Alunda": "images/team/professor-alunda.jpeg",
+            "Dr. Dickens Agumba": "images/team/dickens-agumba.jpeg",
             "Yvonne Achieng’": "images/team/yvonne-achieng.jpeg",
             "Koti Matata": "images/team/koti-matata.jpeg",
             "Victor Orwa": "images/team/victor-orwa.jpeg",
@@ -189,14 +189,14 @@ class CodeManagedContentTests(SimpleTestCase):
         team_html = team_response.content.decode()
         self.assertLess(
             team_html.index("Octor Vitalice"),
-            team_html.index("Professor Alunda"),
+            team_html.index("Prof. Bernard Alunda"),
         )
         self.assertLess(
-            team_html.index("Professor Alunda"),
-            team_html.index("Dickens Agumba"),
+            team_html.index("Prof. Bernard Alunda"),
+            team_html.index("Dr. Dickens Agumba"),
         )
         self.assertLess(
-            team_html.index("Dickens Agumba"),
+            team_html.index("Dr. Dickens Agumba"),
             team_html.index("Yvonne Achieng’"),
         )
         self.assertContains(
@@ -215,11 +215,11 @@ class CodeManagedContentTests(SimpleTestCase):
         leadership_team = about_response.context["leadership_team"]
         self.assertEqual(
             [member["full_name"] for member in leadership_team],
-            ["Octor Vitalice", "Professor Alunda", "Dickens Agumba"],
+            ["Octor Vitalice", "Prof. Bernard Alunda", "Dr. Dickens Agumba"],
         )
         self.assertContains(about_response, "Octor Vitalice")
-        self.assertContains(about_response, "Professor Alunda")
-        self.assertContains(about_response, "Dickens Agumba")
+        self.assertContains(about_response, "Prof. Bernard Alunda")
+        self.assertContains(about_response, "Dr. Dickens Agumba")
         self.assertContains(about_response, "Leadership &amp; innovation")
         self.assertContains(
             about_response,
@@ -244,7 +244,7 @@ class CodeManagedContentTests(SimpleTestCase):
         dickens = next(
             member
             for member in TEAM_MEMBERS
-            if member["full_name"] == "Dickens Agumba"
+            if member["full_name"] == "Dr. Dickens Agumba"
         )
         self.assertEqual(dickens["role"], "Co-Innovator")
         self.assertEqual(dickens["leadership_label"], "Co-Innovator")
@@ -253,8 +253,8 @@ class CodeManagedContentTests(SimpleTestCase):
 
         home_response = self.client.get(reverse("ecofem:home"))
         self.assertContains(home_response, "Octor Vitalice")
-        self.assertContains(home_response, "Professor Alunda")
-        self.assertContains(home_response, "Dickens Agumba")
+        self.assertContains(home_response, "Prof. Bernard Alunda")
+        self.assertContains(home_response, "Dr. Dickens Agumba")
 
     def test_japhes_murithi_profile_and_social_links_are_updated(self):
         response = self.client.get(reverse("ecofem:team_list"))
