@@ -262,7 +262,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Amina Ndinya",
         "slug": "amina-ndinya",
-        "profile_photo": "",
+        "profile_photo": "images/team/amina-ndinya.jpeg",
         "role": "Mentor",
         "expertise": "Strategist and Marketer",
         "short_bio": (

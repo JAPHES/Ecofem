@@ -126,6 +126,7 @@ class CodeManagedContentTests(SimpleTestCase):
             "Simion Masika": "images/team/simion-masika.jpeg",
             "Milcah Chari": "images/team/milcah-chari.jpeg",
             "Japhes Murithi": "images/team/japhes-murithi.jpeg",
+            "Amina Ndinya": "images/team/amina-ndinya.jpeg",
             "James Indiya": "images/team/james-indiya.jpeg",
         }
         members_without_photos = [
@@ -146,7 +147,7 @@ class CodeManagedContentTests(SimpleTestCase):
                 self.assertContains(response, f"/static/{photo_path}")
                 self.assertContains(response, f'alt="Portrait of {name}"')
 
-        self.assertContains(response, "Profile photo placeholder for", count=2)
+        self.assertContains(response, "Profile photo placeholder for", count=1)
 
     def test_innovation_leadership_is_presented_in_one_card_row(self):
         team_response = self.client.get(reverse("ecofem:team_list"))
