@@ -63,29 +63,15 @@
 
 <section class="section leadership-section">
     <div class="container">
-        <div class="section-heading reveal"><span class="eyebrow">Founders &amp; innovation</span><h2 class="section-title">Innovation with purposeful leadership</h2></div>
-        {% if founders %}
-            <div class="founders-grid">
-                {% for founder in founders %}
-                    <article class="leader-profile reveal">
-                        {% if founder.profile_photo %}
-                            <img src="{% static founder.profile_photo %}" alt="Portrait of {{ founder.full_name }}" class="leader-photo">
-                        {% else %}
-                            <div class="image-placeholder leader-placeholder" role="img" aria-label="Profile photo placeholder for {{ founder.full_name }}"><i class="bi bi-person"></i></div>
-                        {% endif %}
-                        <div class="leader-copy">
-                            <span class="role-badge d-inline-block position-static mb-3">{{ founder.leadership_label|default:"Founder" }}</span>
-                            <h3>{{ founder.full_name }}</h3>
-                            <p class="team-role">{{ founder.role }}</p>
-                            <p>{{ founder.leadership_story|default:founder.short_bio }}</p>
-                            {% if founder.vision_for_ecofem %}<h4>Vision for EcoFem</h4><p>{{ founder.vision_for_ecofem }}</p>{% endif %}
-                            {% if founder.contribution %}<h4>Contribution</h4><p>{{ founder.contribution }}</p>{% endif %}
-                        </div>
-                    </article>
+        <div class="section-heading text-center reveal"><span class="eyebrow">Leadership &amp; innovation</span><h2 class="section-title">Innovation with purposeful leadership</h2></div>
+        {% if leadership_team %}
+            <div class="row g-4 justify-content-center">
+                {% for member in leadership_team %}
+                    <div class="col-md-6 col-lg-4 col-xl-3">{% include "includes/team_card.html" %}</div>
                 {% endfor %}
             </div>
         {% else %}
-            <div class="leadership-placeholder reveal"><div><i class="bi bi-person-heart"></i></div><div><h3>Founder profiles coming soon</h3><p>Confirmed founders will be presented here once their official profiles are added. EcoFem does not publish unverified personal information.</p></div></div>
+            <div class="leadership-placeholder reveal"><div><i class="bi bi-person-heart"></i></div><div><h3>Leadership profiles coming soon</h3><p>Confirmed project leaders will be presented here once their official profiles are added. EcoFem does not publish unverified personal information.</p></div></div>
         {% endif %}
     </div>
 </section>
