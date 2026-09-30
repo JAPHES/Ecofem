@@ -220,10 +220,28 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(home_response, "Professor Alunda")
         self.assertContains(home_response, "Dickens Agumba")
 
-    def test_japhes_murithi_name_is_updated(self):
+    def test_japhes_murithi_profile_and_social_links_are_updated(self):
         response = self.client.get(reverse("ecofem:team_list"))
         self.assertContains(response, "Japhes Murithi")
         self.assertNotContains(response, "James Murithi")
+        self.assertContains(response, "Full-Stack Developer")
+        self.assertNotContains(response, "IT Expert")
+
+        japhes = next(
+            member
+            for member in TEAM_MEMBERS
+            if member["full_name"] == "Japhes Murithi"
+        )
+        self.assertEqual(
+            japhes["linkedin_url"],
+            "https://www.linkedin.com/in/japhes-murithi-79178a329/",
+        )
+        self.assertEqual(japhes["twitter_url"], "https://x.com/JaphesMurithi")
+        self.assertEqual(japhes["instagram_url"], "https://japhes.secora.dev")
+        self.assertEqual(japhes["facebook_url"], "https://japhes.secora.dev")
+        self.assertContains(response, japhes["linkedin_url"])
+        self.assertContains(response, japhes["twitter_url"])
+        self.assertContains(response, japhes["instagram_url"], count=2)
 
     @patch("ecofem.views.TEAM_MEMBERS", [SAMPLE_MEMBER])
     def test_team_card_uses_code_content_and_static_image(self):
@@ -250,7 +268,7 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(
             response,
             'href="/team/" class="team-social-link"',
-            count=48,
+            count=44,
         )
         for label in ("LinkedIn", "Instagram", "Twitter", "Facebook"):
             self.assertContains(response, f'aria-label="{label} for', count=12)
