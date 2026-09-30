@@ -237,11 +237,11 @@ TEAM_MEMBERS = [
         "full_name": "Japhes Murithi",
         "slug": "japhes-murithi",
         "profile_photo": "images/team/japhes-murithi.jpeg",
-        "role": "IT Expert",
+        "role": "Full-Stack Developer",
         "expertise": "Digital Marketing Expertise",
         "short_bio": (
-            "Japhes supports EcoFem as an IT Expert with digital marketing "
-            "expertise."
+            "Japhes supports EcoFem as a Full-Stack Developer with digital "
+            "marketing expertise."
         ),
         "professional_background": (
             "Brings digital marketing expertise to grow EcoFem's visibility, "
@@ -251,7 +251,10 @@ TEAM_MEMBERS = [
         "leadership_story": "",
         "vision_for_ecofem": "",
         "email": "",
-        "linkedin_url": "",
+        "linkedin_url": "https://www.linkedin.com/in/japhes-murithi-79178a329/",
+        "instagram_url": "https://japhes.secora.dev",
+        "twitter_url": "https://x.com/JaphesMurithi",
+        "facebook_url": "https://japhes.secora.dev",
         "is_founder_or_lead": False,
         "is_featured": False,
         "is_active": True,
