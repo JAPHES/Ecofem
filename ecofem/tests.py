@@ -104,6 +104,18 @@ class PublicPageTests(SimpleTestCase):
             "https://ecofem.secora.dev/about/",
         )
 
+    def test_home_hero_contains_three_accessible_slideshow_images(self):
+        response = self.client.get(reverse("ecofem:home"))
+        self.assertContains(response, 'class="hero-slide is-active"', count=1)
+        self.assertContains(response, 'class="hero-slide"', count=2)
+        self.assertContains(response, "/static/images/ecofem-hero.png")
+        self.assertContains(response, "/static/images/ecofem-hero-research.png")
+        self.assertContains(response, "/static/images/ecofem-hero-harvesting.png")
+        self.assertContains(
+            response,
+            'aria-label="EcoFem menstrual-care and water-hyacinth innovation scenes"',
+        )
+
 
 class CodeManagedContentTests(SimpleTestCase):
     def test_team_members_render_with_approved_photo_and_placeholders(self):
