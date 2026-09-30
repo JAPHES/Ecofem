@@ -287,7 +287,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Anne Kemunto",
         "slug": "anne-kemunto",
-        "profile_photo": "",
+        "profile_photo": "images/team/anne-kemunto.jpeg",
         "role": "Project Accountant",
         "expertise": "Accounting & Finance Expert",
         "short_bio": (
