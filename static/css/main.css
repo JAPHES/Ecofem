@@ -1192,6 +1192,10 @@ p:last-child {
     height: 390px;
 }
 
+.founders-grid .leader-photo {
+    object-position: center top;
+}
+
 .leader-photo,
 .leader-placeholder {
     width: 100%;
