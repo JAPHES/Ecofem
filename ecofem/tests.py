@@ -116,26 +116,29 @@ class CodeManagedContentTests(SimpleTestCase):
                 self.assertContains(response, member["role"])
                 self.assertContains(response, escape(member["expertise"]))
 
+        approved_photos = {
+            "Simion Masika": "images/team/simion-masika.jpeg",
+            "Japhes Murithi": "images/team/japhes-murithi.jpeg",
+        }
         members_without_photos = [
-            member for member in TEAM_MEMBERS if member["full_name"] != "Japhes Murithi"
+            member
+            for member in TEAM_MEMBERS
+            if member["full_name"] not in approved_photos
         ]
         self.assertTrue(
             all(not member["profile_photo"] for member in members_without_photos)
         )
 
-        japhes = next(
-            member for member in TEAM_MEMBERS if member["full_name"] == "Japhes Murithi"
-        )
-        self.assertEqual(
-            japhes["profile_photo"],
-            "images/team/japhes-murithi.jpeg",
-        )
-        self.assertContains(
-            response,
-            "/static/images/team/japhes-murithi.jpeg",
-        )
-        self.assertContains(response, 'alt="Portrait of Japhes Murithi"')
-        self.assertContains(response, "Profile photo placeholder for", count=10)
+        for name, photo_path in approved_photos.items():
+            with self.subTest(photo=name):
+                member = next(
+                    member for member in TEAM_MEMBERS if member["full_name"] == name
+                )
+                self.assertEqual(member["profile_photo"], photo_path)
+                self.assertContains(response, f"/static/{photo_path}")
+                self.assertContains(response, f'alt="Portrait of {name}"')
+
+        self.assertContains(response, "Profile photo placeholder for", count=9)
 
     def test_octor_and_professor_alunda_are_presented_as_founders(self):
         team_response = self.client.get(reverse("ecofem:team_list"))

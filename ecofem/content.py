@@ -170,7 +170,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Simion Masika",
         "slug": "simion-masika",
-        "profile_photo": "",
+        "profile_photo": "images/team/simion-masika.jpeg",
         "role": "Mechanical Engineering",
         "expertise": "Product Designer",
         "short_bio": (
