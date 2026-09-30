@@ -310,7 +310,7 @@ p:last-child {
 
 /* Home hero */
 .home-hero {
-    padding-top: 102px;
+    padding-top: 78px;
     background: var(--cream);
 }
 
@@ -318,8 +318,7 @@ p:last-child {
     position: relative;
     min-height: 680px;
     overflow: hidden;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    width: 100%;
 }
 
 .hero-slideshow,
@@ -364,7 +363,7 @@ p:last-child {
     display: flex;
     width: min(650px, 56%);
     min-height: 680px;
-    padding: 5rem;
+    padding: 5rem 0;
     flex-direction: column;
     justify-content: center;
     color: rgba(255, 255, 255, 0.86);
@@ -2179,7 +2178,7 @@ textarea.form-control {
 @media (max-width: 1199.98px) {
     .hero-content {
         width: 65%;
-        padding: 4rem;
+        padding: 4rem 0;
     }
 
     .flow-track {
@@ -2227,7 +2226,7 @@ textarea.form-control {
 
     .hero-content {
         width: 75%;
-        padding: 3rem;
+        padding: 3rem 0;
     }
 
     .hero-overlay {
@@ -2280,7 +2279,7 @@ textarea.form-control {
     }
 
     .home-hero {
-        padding-top: 92px;
+        padding-top: 78px;
     }
 
     .hero-panel,
@@ -2299,7 +2298,7 @@ textarea.form-control {
 
     .hero-content {
         width: 100%;
-        padding: 2rem;
+        padding: 2rem 0;
         justify-content: flex-end;
     }
 
@@ -2408,7 +2407,6 @@ textarea.form-control {
         object-position: 84% center;
     }
 
-    .hero-panel,
     .cta-panel,
     .final-cta,
     .innovation-intro,
@@ -2419,7 +2417,7 @@ textarea.form-control {
     }
 
     .hero-content {
-        padding: 1.5rem;
+        padding: 1.5rem 0;
     }
 
     .hero-content .btn {
