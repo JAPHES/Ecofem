@@ -1042,14 +1042,58 @@ p:last-child {
     background: var(--cream-deep);
 }
 
-.page-hero::before,
-.page-hero::after {
+.page-hero--image {
+    display: flex;
+    min-height: 570px;
+    padding: 9.75rem 0 5.75rem;
+    align-items: center;
+    background: var(--charcoal);
+}
+
+.page-hero-background,
+.page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.page-hero-background {
+    object-fit: cover;
+    object-position: center;
+}
+
+.page-hero-overlay {
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(37, 27, 31, 0.78), rgba(65, 39, 49, 0.76) 50%, rgba(37, 27, 31, 0.74));
+}
+
+.page-hero > .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-hero--image .eyebrow {
+    color: var(--blush);
+}
+
+.page-hero--image h1 {
+    color: var(--white);
+    text-shadow: 0 3px 24px rgba(0, 0, 0, 0.24);
+}
+
+.page-hero.page-hero--image p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.page-hero:not(.page-hero--image)::before,
+.page-hero:not(.page-hero--image)::after {
     position: absolute;
     border-radius: 50%;
     content: "";
 }
 
-.page-hero::before {
+.page-hero:not(.page-hero--image)::before {
     top: -170px;
     left: -100px;
     width: 400px;
@@ -1058,7 +1102,7 @@ p:last-child {
     filter: blur(1px);
 }
 
-.page-hero::after {
+.page-hero:not(.page-hero--image)::after {
     right: -60px;
     bottom: -210px;
     width: 430px;
@@ -2356,6 +2400,29 @@ textarea.form-control {
 
     .page-hero {
         padding: 9.5rem 0 5.5rem;
+    }
+
+    .page-hero--image {
+        min-height: 540px;
+        padding: 8.75rem 0 4.75rem;
+    }
+
+    .page-hero--about .page-hero-background,
+    .page-hero--team .page-hero-background {
+        object-position: 24% center;
+    }
+
+    .page-hero--innovation .page-hero-background,
+    .page-hero--updates .page-hero-background {
+        object-position: 18% center;
+    }
+
+    .page-hero--impact .page-hero-background {
+        object-position: 32% center;
+    }
+
+    .page-hero--contact .page-hero-background {
+        object-position: 72% center;
     }
 
     .about-image-wrap img,
