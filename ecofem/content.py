@@ -48,8 +48,8 @@ SITE = {
 }
 
 
-# Confirmed EcoFem team members. Profile photos intentionally remain blank
-# until approved portraits are added under static/images/team/.
+# Confirmed EcoFem team members. Profile photos remain blank until an approved
+# portrait is added under static/images/team/.
 TEAM_MEMBERS = [
     {
         "full_name": "Octor Vitalice",
@@ -199,7 +199,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Japhes Murithi",
         "slug": "japhes-murithi",
-        "profile_photo": "",
+        "profile_photo": "images/team/japhes-murithi.jpeg",
         "role": "IT Expert",
         "expertise": "Digital Marketing Expertise",
         "short_bio": (
