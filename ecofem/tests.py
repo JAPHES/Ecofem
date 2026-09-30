@@ -107,7 +107,7 @@ class PublicPageTests(SimpleTestCase):
 
 class CodeManagedContentTests(SimpleTestCase):
     def test_team_members_render_with_approved_photo_and_placeholders(self):
-        self.assertEqual(len(TEAM_MEMBERS), 11)
+        self.assertEqual(len(TEAM_MEMBERS), 12)
         response = self.client.get(reverse("ecofem:team_list"))
 
         for member in TEAM_MEMBERS:
@@ -117,6 +117,12 @@ class CodeManagedContentTests(SimpleTestCase):
                 self.assertContains(response, escape(member["expertise"]))
 
         approved_photos = {
+            "Octor Vitalice": "images/team/octor-vitalice.jpeg",
+            "Professor Alunda": "images/team/professor-alunda.jpeg",
+            "Dickens Agumba": "images/team/dickens-agumba.jpeg",
+            "Yvonne Achieng’": "images/team/yvonne-achieng.jpeg",
+            "Koti Matata": "images/team/koti-matata.jpeg",
+            "Victor Orwa": "images/team/victor-orwa.jpeg",
             "Simion Masika": "images/team/simion-masika.jpeg",
             "Milcah Chari": "images/team/milcah-chari.jpeg",
             "Japhes Murithi": "images/team/japhes-murithi.jpeg",
@@ -140,7 +146,7 @@ class CodeManagedContentTests(SimpleTestCase):
                 self.assertContains(response, f"/static/{photo_path}")
                 self.assertContains(response, f'alt="Portrait of {name}"')
 
-        self.assertContains(response, "Profile photo placeholder for", count=7)
+        self.assertContains(response, "Profile photo placeholder for", count=2)
 
     def test_octor_and_professor_alunda_are_presented_as_founders(self):
         team_response = self.client.get(reverse("ecofem:team_list"))
@@ -151,6 +157,10 @@ class CodeManagedContentTests(SimpleTestCase):
         )
         self.assertLess(
             team_html.index("Professor Alunda"),
+            team_html.index("Dickens Agumba"),
+        )
+        self.assertLess(
+            team_html.index("Dickens Agumba"),
             team_html.index("Yvonne Achieng’"),
         )
         self.assertContains(
@@ -178,11 +188,24 @@ class CodeManagedContentTests(SimpleTestCase):
         alunda = founders[1]
         self.assertEqual(alunda["role"], "Co-Founder")
         self.assertEqual(alunda["professional_background"], "")
-        self.assertEqual(alunda["profile_photo"], "")
+        self.assertEqual(
+            alunda["profile_photo"],
+            "images/team/professor-alunda.jpeg",
+        )
+
+        dickens = next(
+            member
+            for member in TEAM_MEMBERS
+            if member["full_name"] == "Dickens Agumba"
+        )
+        self.assertEqual(dickens["role"], "Co-Innovator")
+        self.assertEqual(dickens["professional_background"], "")
+        self.assertFalse(dickens["is_founder_or_lead"])
 
         home_response = self.client.get(reverse("ecofem:home"))
         self.assertContains(home_response, "Octor Vitalice")
         self.assertContains(home_response, "Professor Alunda")
+        self.assertContains(home_response, "Dickens Agumba")
 
     def test_japhes_murithi_name_is_updated(self):
         response = self.client.get(reverse("ecofem:team_list"))
@@ -203,21 +226,21 @@ class CodeManagedContentTests(SimpleTestCase):
 
     def test_team_cards_show_disabled_profile_controls_without_links(self):
         response = self.client.get(reverse("ecofem:team_list"))
-        self.assertContains(response, "View profile", count=11)
-        self.assertContains(response, 'disabled aria-disabled="true"', count=11)
+        self.assertContains(response, "View profile", count=12)
+        self.assertContains(response, 'disabled aria-disabled="true"', count=12)
         for member in TEAM_MEMBERS:
             self.assertNotContains(response, f'/team/{member["slug"]}/')
 
     def test_team_social_icons_fall_back_to_team_page(self):
         response = self.client.get(reverse("ecofem:team_list"))
-        self.assertContains(response, 'class="team-social-link"', count=44)
+        self.assertContains(response, 'class="team-social-link"', count=48)
         self.assertContains(
             response,
             'href="/team/" class="team-social-link"',
-            count=44,
+            count=48,
         )
         for label in ("LinkedIn", "Instagram", "Twitter", "Facebook"):
-            self.assertContains(response, f'aria-label="{label} for', count=11)
+            self.assertContains(response, f'aria-label="{label} for', count=12)
 
     @patch("ecofem.views.UPDATES", [SAMPLE_UPDATE])
     def test_update_uses_code_content_and_static_image(self):
