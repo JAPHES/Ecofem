@@ -1174,10 +1174,22 @@ p:last-child {
     background: var(--white);
 }
 
+.founders-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
 .leader-profile {
     overflow: hidden;
     border-radius: var(--radius-lg);
     background: var(--charcoal);
+}
+
+.founders-grid .leader-photo,
+.founders-grid .leader-placeholder {
+    min-height: 390px;
+    height: 390px;
 }
 
 .leader-photo,
@@ -2217,6 +2229,10 @@ textarea.form-control {
 }
 
 @media (max-width: 991.98px) {
+    .founders-grid {
+        grid-template-columns: 1fr;
+    }
+
     .navbar-collapse {
         margin-top: 0.7rem;
         padding: 1rem;
@@ -2428,6 +2444,12 @@ textarea.form-control {
 }
 
 @media (max-width: 575.98px) {
+    .founders-grid .leader-photo,
+    .founders-grid .leader-placeholder {
+        min-height: 320px;
+        height: 320px;
+    }
+
     .hero-image {
         object-position: 84% center;
     }

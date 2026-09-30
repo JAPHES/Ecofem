@@ -27,16 +27,13 @@ def home(request):
 
 
 def about(request):
-    founder = next(
-        (
-            member
-            for member in _active_team()
-            if member.get("is_founder_or_lead", False)
-        ),
-        None,
-    )
+    founders = [
+        member
+        for member in _active_team()
+        if member.get("is_founder_or_lead", False)
+    ]
     context = {
-        "founder": founder,
+        "founders": founders,
         "partners": PARTNERS,
         "gallery_images": GALLERY_IMAGES[:6],
     }

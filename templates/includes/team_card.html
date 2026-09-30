@@ -9,7 +9,7 @@
                 <i class="bi bi-person"></i>
             </div>
         {% endif %}
-        {% if member.is_founder_or_lead %}<span class="role-badge">Founder</span>{% endif %}
+        {% if member.is_founder_or_lead %}<span class="role-badge">{{ member.leadership_label|default:"Founder" }}</span>{% endif %}
     </div>
     <div class="team-card-body">
         <h2 class="h4">{{ member.full_name }}</h2>
