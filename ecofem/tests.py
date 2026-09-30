@@ -116,6 +116,28 @@ class PublicPageTests(SimpleTestCase):
             'aria-label="EcoFem menstrual-care and water-hyacinth innovation scenes"',
         )
 
+    def test_main_content_pages_use_related_full_width_header_images(self):
+        page_images = {
+            "about": "about.png",
+            "innovation": "innovation.png",
+            "impact": "impact.png",
+            "team_list": "team.png",
+            "update_list": "updates.png",
+            "contact": "contact.png",
+        }
+
+        for page_name, image_name in page_images.items():
+            with self.subTest(page=page_name):
+                response = self.client.get(reverse(f"ecofem:{page_name}"))
+                self.assertContains(
+                    response,
+                    'class="page-hero page-hero--image',
+                )
+                self.assertContains(
+                    response,
+                    f'/static/images/page-headers/{image_name}',
+                )
+
 
 class CodeManagedContentTests(SimpleTestCase):
     def test_team_members_render_with_approved_photo_and_placeholders(self):
