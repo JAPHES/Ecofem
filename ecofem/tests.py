@@ -107,7 +107,7 @@ class PublicPageTests(SimpleTestCase):
 
 class CodeManagedContentTests(SimpleTestCase):
     def test_team_members_render_with_approved_photo_and_placeholders(self):
-        self.assertEqual(len(TEAM_MEMBERS), 10)
+        self.assertEqual(len(TEAM_MEMBERS), 11)
         response = self.client.get(reverse("ecofem:team_list"))
 
         for member in TEAM_MEMBERS:
@@ -135,21 +135,49 @@ class CodeManagedContentTests(SimpleTestCase):
             "/static/images/team/japhes-murithi.jpeg",
         )
         self.assertContains(response, 'alt="Portrait of Japhes Murithi"')
-        self.assertContains(response, "Profile photo placeholder for", count=9)
+        self.assertContains(response, "Profile photo placeholder for", count=10)
 
-    def test_octor_is_first_and_presented_as_founder(self):
+    def test_octor_and_professor_alunda_are_presented_as_founders(self):
         team_response = self.client.get(reverse("ecofem:team_list"))
         team_html = team_response.content.decode()
         self.assertLess(
             team_html.index("Octor Vitalice"),
+            team_html.index("Professor Alunda"),
+        )
+        self.assertLess(
+            team_html.index("Professor Alunda"),
             team_html.index("Yvonne Achieng’"),
         )
-        self.assertContains(team_response, "Founder", count=1)
+        self.assertContains(
+            team_response,
+            '<span class="role-badge">Founder</span>',
+            count=1,
+        )
+        self.assertContains(
+            team_response,
+            '<span class="role-badge">Co-Founder</span>',
+            count=1,
+        )
         self.assertNotContains(team_response, "Project leadership")
 
         about_response = self.client.get(reverse("ecofem:about"))
+        founders = about_response.context["founders"]
+        self.assertEqual(
+            [founder["full_name"] for founder in founders],
+            ["Octor Vitalice", "Professor Alunda"],
+        )
         self.assertContains(about_response, "Octor Vitalice")
-        self.assertContains(about_response, "Founder / Innovator")
+        self.assertContains(about_response, "Professor Alunda")
+        self.assertContains(about_response, "Founders &amp; innovation")
+
+        alunda = founders[1]
+        self.assertEqual(alunda["role"], "Co-Founder")
+        self.assertEqual(alunda["professional_background"], "")
+        self.assertEqual(alunda["profile_photo"], "")
+
+        home_response = self.client.get(reverse("ecofem:home"))
+        self.assertContains(home_response, "Octor Vitalice")
+        self.assertContains(home_response, "Professor Alunda")
 
     def test_japhes_murithi_name_is_updated(self):
         response = self.client.get(reverse("ecofem:team_list"))
@@ -170,21 +198,21 @@ class CodeManagedContentTests(SimpleTestCase):
 
     def test_team_cards_show_disabled_profile_controls_without_links(self):
         response = self.client.get(reverse("ecofem:team_list"))
-        self.assertContains(response, "View profile", count=10)
-        self.assertContains(response, 'disabled aria-disabled="true"', count=10)
+        self.assertContains(response, "View profile", count=11)
+        self.assertContains(response, 'disabled aria-disabled="true"', count=11)
         for member in TEAM_MEMBERS:
             self.assertNotContains(response, f'/team/{member["slug"]}/')
 
     def test_team_social_icons_fall_back_to_team_page(self):
         response = self.client.get(reverse("ecofem:team_list"))
-        self.assertContains(response, 'class="team-social-link"', count=40)
+        self.assertContains(response, 'class="team-social-link"', count=44)
         self.assertContains(
             response,
             'href="/team/" class="team-social-link"',
-            count=40,
+            count=44,
         )
         for label in ("LinkedIn", "Instagram", "Twitter", "Facebook"):
-            self.assertContains(response, f'aria-label="{label} for', count=10)
+            self.assertContains(response, f'aria-label="{label} for', count=11)
 
     @patch("ecofem.views.UPDATES", [SAMPLE_UPDATE])
     def test_update_uses_code_content_and_static_image(self):

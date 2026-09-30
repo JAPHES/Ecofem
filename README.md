@@ -127,6 +127,7 @@ TEAM_MEMBERS = [
         "instagram_url": "",
         "twitter_url": "",
         "facebook_url": "",
+        "leadership_label": "",
         "is_founder_or_lead": False,
         "is_featured": True,
         "is_active": True,
@@ -135,9 +136,9 @@ TEAM_MEMBERS = [
 ```
 
 Use a unique lowercase slug with hyphens so detail pages can be restored later.
-Set `is_founder_or_lead` to `True` for the confirmed founder. Public team-detail
-routes are currently disabled, and up to four featured people appear on the
-homepage.
+Set `is_founder_or_lead` to `True` for a confirmed founder or co-founder and
+use `leadership_label` for the public badge text. Public team-detail routes are
+currently disabled, and up to four featured people appear on the homepage.
 
 Each team card displays LinkedIn, Instagram, Twitter and Facebook icons. An
 empty social URL sends visitors back to the Team page. Replace an empty value
