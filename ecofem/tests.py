@@ -148,7 +148,7 @@ class CodeManagedContentTests(SimpleTestCase):
 
         self.assertContains(response, "Profile photo placeholder for", count=2)
 
-    def test_octor_and_professor_alunda_are_presented_as_founders(self):
+    def test_innovation_leadership_is_presented_in_one_card_row(self):
         team_response = self.client.get(reverse("ecofem:team_list"))
         team_html = team_response.content.decode()
         self.assertLess(
@@ -170,23 +170,35 @@ class CodeManagedContentTests(SimpleTestCase):
         )
         self.assertContains(
             team_response,
-            '<span class="role-badge">Co-Founder</span>',
-            count=1,
+            '<span class="role-badge">Co-Innovator</span>',
+            count=2,
         )
         self.assertNotContains(team_response, "Project leadership")
 
         about_response = self.client.get(reverse("ecofem:about"))
-        founders = about_response.context["founders"]
+        leadership_team = about_response.context["leadership_team"]
         self.assertEqual(
-            [founder["full_name"] for founder in founders],
-            ["Octor Vitalice", "Professor Alunda"],
+            [member["full_name"] for member in leadership_team],
+            ["Octor Vitalice", "Professor Alunda", "Dickens Agumba"],
         )
         self.assertContains(about_response, "Octor Vitalice")
         self.assertContains(about_response, "Professor Alunda")
-        self.assertContains(about_response, "Founders &amp; innovation")
+        self.assertContains(about_response, "Dickens Agumba")
+        self.assertContains(about_response, "Leadership &amp; innovation")
+        self.assertContains(
+            about_response,
+            'class="team-card h-100 reveal"',
+            count=3,
+        )
+        self.assertContains(
+            about_response,
+            'class="col-md-6 col-lg-4 col-xl-3"',
+            count=3,
+        )
 
-        alunda = founders[1]
-        self.assertEqual(alunda["role"], "Co-Founder")
+        alunda = leadership_team[1]
+        self.assertEqual(alunda["role"], "Co-Innovator")
+        self.assertEqual(alunda["leadership_label"], "Co-Innovator")
         self.assertEqual(alunda["professional_background"], "")
         self.assertEqual(
             alunda["profile_photo"],
@@ -199,8 +211,9 @@ class CodeManagedContentTests(SimpleTestCase):
             if member["full_name"] == "Dickens Agumba"
         )
         self.assertEqual(dickens["role"], "Co-Innovator")
+        self.assertEqual(dickens["leadership_label"], "Co-Innovator")
         self.assertEqual(dickens["professional_background"], "")
-        self.assertFalse(dickens["is_founder_or_lead"])
+        self.assertTrue(dickens["is_founder_or_lead"])
 
         home_response = self.client.get(reverse("ecofem:home"))
         self.assertContains(home_response, "Octor Vitalice")
