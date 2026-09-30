@@ -9,6 +9,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const revealItems = document.querySelectorAll(".reveal");
 
+    const heroSlides = Array.from(document.querySelectorAll(".hero-slide"));
+    let activeHeroSlide = 0;
+    let heroSlideshowTimer;
+
+    const advanceHeroSlide = () => {
+        heroSlides[activeHeroSlide]?.classList.remove("is-active");
+        activeHeroSlide = (activeHeroSlide + 1) % heroSlides.length;
+        heroSlides[activeHeroSlide]?.classList.add("is-active");
+    };
+
+    const startHeroSlideshow = () => {
+        if (reducedMotion || heroSlides.length < 2 || heroSlideshowTimer) return;
+        heroSlideshowTimer = window.setInterval(advanceHeroSlide, 6000);
+    };
+
+    const stopHeroSlideshow = () => {
+        window.clearInterval(heroSlideshowTimer);
+        heroSlideshowTimer = undefined;
+    };
+
+    startHeroSlideshow();
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopHeroSlideshow();
+        } else {
+            startHeroSlideshow();
+        }
+    });
+
     if (reducedMotion || !("IntersectionObserver" in window)) {
         revealItems.forEach((item) => item.classList.add("is-visible"));
     } else {
