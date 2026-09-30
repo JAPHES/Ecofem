@@ -118,7 +118,9 @@ class CodeManagedContentTests(SimpleTestCase):
 
         approved_photos = {
             "Simion Masika": "images/team/simion-masika.jpeg",
+            "Milcah Chari": "images/team/milcah-chari.jpeg",
             "Japhes Murithi": "images/team/japhes-murithi.jpeg",
+            "James Indiya": "images/team/james-indiya.jpeg",
         }
         members_without_photos = [
             member
@@ -138,7 +140,7 @@ class CodeManagedContentTests(SimpleTestCase):
                 self.assertContains(response, f"/static/{photo_path}")
                 self.assertContains(response, f'alt="Portrait of {name}"')
 
-        self.assertContains(response, "Profile photo placeholder for", count=9)
+        self.assertContains(response, "Profile photo placeholder for", count=7)
 
     def test_octor_and_professor_alunda_are_presented_as_founders(self):
         team_response = self.client.get(reverse("ecofem:team_list"))

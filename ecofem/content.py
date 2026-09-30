@@ -193,7 +193,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "Milcah Chari",
         "slug": "milcah-chari",
-        "profile_photo": "",
+        "profile_photo": "images/team/milcah-chari.jpeg",
         "role": "Administrator",
         "expertise": "Business Development Expert",
         "short_bio": (
@@ -291,7 +291,7 @@ TEAM_MEMBERS = [
     {
         "full_name": "James Indiya",
         "slug": "james-indiya",
-        "profile_photo": "",
+        "profile_photo": "images/team/james-indiya.jpeg",
         "role": "Analyst",
         "expertise": "Analysis Expert",
         "short_bio": (
