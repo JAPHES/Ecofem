@@ -144,6 +144,10 @@ class PublicPageTests(SimpleTestCase):
             response,
             '<meta name="theme-color" content="#5b2a86">',
         )
+        self.assertContains(
+            response,
+            '/static/css/main.css?v=20261015-visibility',
+        )
 
         stylesheet = (
             settings.BASE_DIR / "static" / "css" / "main.css"
