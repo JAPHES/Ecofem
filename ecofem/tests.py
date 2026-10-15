@@ -138,6 +138,31 @@ class PublicPageTests(SimpleTestCase):
                     f'/static/images/page-headers/{image_name}',
                 )
 
+    def test_site_uses_green_and_purple_brand_theme(self):
+        response = self.client.get(reverse("ecofem:home"))
+        self.assertContains(
+            response,
+            '<meta name="theme-color" content="#5b2a86">',
+        )
+
+        stylesheet = (
+            settings.BASE_DIR / "static" / "css" / "main.css"
+        ).read_text(encoding="utf-8")
+        for token in (
+            "--purple: #5b2a86;",
+            "--purple-dark: #3d1858;",
+            "--green: #2f7048;",
+            "--green-dark: #1f5133;",
+            "--surface: #ffffff;",
+            "--ink: #151515;",
+        ):
+            with self.subTest(token=token):
+                self.assertIn(token, stylesheet)
+
+        for retired_colour in ("#8e3557", "#e8b4c8", "#7fa889"):
+            with self.subTest(retired_colour=retired_colour):
+                self.assertNotIn(retired_colour, stylesheet.lower())
+
 
 class CodeManagedContentTests(SimpleTestCase):
     def test_team_members_render_with_approved_photo_and_placeholders(self):
