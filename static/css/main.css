@@ -352,6 +352,7 @@ p:last-child {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    filter: brightness(1.03) saturate(1.04);
     opacity: 0;
     transform: scale(1);
     transition: opacity 1.2s ease-in-out, transform 7s ease-out;
@@ -365,7 +366,7 @@ p:last-child {
 
 .hero-overlay {
     z-index: 1;
-    background: linear-gradient(90deg, rgba(47, 20, 70, 0.94) 0%, rgba(47, 112, 72, 0.72) 45%, rgba(21, 21, 21, 0.08) 76%);
+    background: linear-gradient(90deg, rgba(47, 20, 70, 0.87) 0%, rgba(31, 81, 51, 0.48) 48%, rgba(21, 21, 21, 0.03) 78%);
     pointer-events: none;
 }
 
@@ -1074,13 +1075,14 @@ p:last-child {
 }
 
 .page-hero-background {
+    filter: brightness(1.06) saturate(1.05);
     object-fit: cover;
     object-position: center;
 }
 
 .page-hero-overlay {
     z-index: 1;
-    background: linear-gradient(90deg, rgba(47, 20, 70, 0.84), rgba(31, 81, 51, 0.77) 50%, rgba(47, 20, 70, 0.8));
+    background: linear-gradient(90deg, rgba(47, 20, 70, 0.62), rgba(31, 81, 51, 0.48) 50%, rgba(47, 20, 70, 0.58));
 }
 
 .page-hero > .container {
@@ -1090,6 +1092,7 @@ p:last-child {
 
 .page-hero--image .eyebrow {
     color: var(--blush);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.72);
 }
 
 .page-hero--image h1 {
@@ -1098,7 +1101,8 @@ p:last-child {
 }
 
 .page-hero.page-hero--image p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--white);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.74);
 }
 
 .page-hero:not(.page-hero--image)::before,
@@ -2289,7 +2293,7 @@ textarea.form-control {
     }
 
     .hero-overlay {
-        background: linear-gradient(90deg, rgba(47, 20, 70, 0.94), rgba(31, 81, 51, 0.64) 72%, rgba(21, 21, 21, 0.12));
+        background: linear-gradient(90deg, rgba(47, 20, 70, 0.87), rgba(31, 81, 51, 0.44) 72%, rgba(21, 21, 21, 0.06));
     }
 
     .process-grid {
@@ -2352,7 +2356,7 @@ textarea.form-control {
     }
 
     .hero-overlay {
-        background: linear-gradient(0deg, rgba(47, 20, 70, 0.97) 8%, rgba(31, 81, 51, 0.78) 58%, rgba(21, 21, 21, 0.18));
+        background: linear-gradient(0deg, rgba(47, 20, 70, 0.9) 8%, rgba(31, 81, 51, 0.52) 58%, rgba(21, 21, 21, 0.08));
     }
 
     .hero-content {
