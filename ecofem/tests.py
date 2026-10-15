@@ -146,7 +146,7 @@ class PublicPageTests(SimpleTestCase):
         )
         self.assertContains(
             response,
-            '/static/css/main.css?v=20261015-visibility',
+            '/static/css/main.css?v=20261015-lavender',
         )
 
         stylesheet = (
@@ -157,6 +157,7 @@ class PublicPageTests(SimpleTestCase):
             "--purple-dark: #3d1858;",
             "--green: #2f7048;",
             "--green-dark: #1f5133;",
+            "--page-background: #f7f2fa;",
             "--surface: #ffffff;",
             "--ink: #151515;",
         ):
