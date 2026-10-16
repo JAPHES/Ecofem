@@ -186,80 +186,6 @@ TEAM_MEMBERS = [
         "is_active": True,
     },
     {
-        "full_name": "Simion Masika",
-        "slug": "simion-masika",
-        "profile_photo": "images/team/simion-masika.jpeg",
-        "role": "Mechanical Engineering",
-        "expertise": "Product Designer",
-        "short_bio": (
-            "Simion supports EcoFem through mechanical engineering and "
-            "product design."
-        ),
-        "professional_background": (
-            "An expert in prototyping, experimentation, product design, and "
-            "testing for optimal product quality."
-        ),
-        "contribution": "",
-        "leadership_story": "",
-        "vision_for_ecofem": "",
-        "email": "",
-        "linkedin_url": "",
-        "is_founder_or_lead": False,
-        "is_featured": False,
-        "is_active": True,
-    },
-    {
-        "full_name": "Milcah Chari",
-        "slug": "milcah-chari",
-        "profile_photo": "images/team/milcah-chari.jpeg",
-        "role": "Administrator",
-        "expertise": "Business Development Expert",
-        "short_bio": (
-            "Milcah serves as EcoFem's Administrator with expertise in "
-            "business development."
-        ),
-        "professional_background": (
-            "An administrative account manager who supports scalable project "
-            "implementation through project coordination, stakeholder "
-            "engagement, synthesis of customer insights, and project "
-            "commercialization."
-        ),
-        "contribution": "",
-        "leadership_story": "",
-        "vision_for_ecofem": "",
-        "email": "",
-        "linkedin_url": "",
-        "is_founder_or_lead": False,
-        "is_featured": False,
-        "is_active": True,
-    },
-    {
-        "full_name": "Japhes Murithi",
-        "slug": "japhes-murithi",
-        "profile_photo": "images/team/japhes-murithi.jpeg",
-        "role": "Full-Stack Developer",
-        "expertise": "Digital Marketing Expertise",
-        "short_bio": (
-            "Japhes supports EcoFem as a Full-Stack Developer with digital "
-            "marketing expertise."
-        ),
-        "professional_background": (
-            "Brings digital marketing expertise to grow EcoFem's visibility, "
-            "engagement, customer reach, and awareness."
-        ),
-        "contribution": "",
-        "leadership_story": "",
-        "vision_for_ecofem": "",
-        "email": "",
-        "linkedin_url": "https://www.linkedin.com/in/japhes-murithi-79178a329/",
-        "instagram_url": "https://japhes.secora.dev",
-        "twitter_url": "https://x.com/JaphesMurithi",
-        "facebook_url": "https://japhes.secora.dev",
-        "is_founder_or_lead": False,
-        "is_featured": False,
-        "is_active": True,
-    },
-    {
         "full_name": "Amina Ndinya",
         "profile_name": "Ms. Amina Ndinya",
         "slug": "amina-ndinya",
@@ -340,6 +266,54 @@ TEAM_MEMBERS = [
         "is_active": True,
     },
     {
+        "full_name": "Milcah Chari",
+        "slug": "milcah-chari",
+        "profile_photo": "images/team/milcah-chari.jpeg",
+        "role": "Administrator",
+        "expertise": "Business Development Expert",
+        "short_bio": (
+            "Milcah serves as EcoFem's Administrator with expertise in "
+            "business development."
+        ),
+        "professional_background": (
+            "An administrative account manager who supports scalable project "
+            "implementation through project coordination, stakeholder "
+            "engagement, synthesis of customer insights, and project "
+            "commercialization."
+        ),
+        "contribution": "",
+        "leadership_story": "",
+        "vision_for_ecofem": "",
+        "email": "",
+        "linkedin_url": "",
+        "is_founder_or_lead": False,
+        "is_featured": False,
+        "is_active": True,
+    },
+    {
+        "full_name": "Simion Masika",
+        "slug": "simion-masika",
+        "profile_photo": "images/team/simion-masika.jpeg",
+        "role": "Mechanical Engineering",
+        "expertise": "Product Designer",
+        "short_bio": (
+            "Simion supports EcoFem through mechanical engineering and "
+            "product design."
+        ),
+        "professional_background": (
+            "An expert in prototyping, experimentation, product design, and "
+            "testing for optimal product quality."
+        ),
+        "contribution": "",
+        "leadership_story": "",
+        "vision_for_ecofem": "",
+        "email": "",
+        "linkedin_url": "",
+        "is_founder_or_lead": False,
+        "is_featured": False,
+        "is_active": True,
+    },
+    {
         "full_name": "James Indiya",
         "slug": "james-indiya",
         "profile_photo": "images/team/james-indiya.jpeg",
@@ -359,6 +333,32 @@ TEAM_MEMBERS = [
         "vision_for_ecofem": "",
         "email": "",
         "linkedin_url": "",
+        "is_founder_or_lead": False,
+        "is_featured": False,
+        "is_active": True,
+    },
+    {
+        "full_name": "Japhes Murithi",
+        "slug": "japhes-murithi",
+        "profile_photo": "images/team/japhes-murithi.jpeg",
+        "role": "Full-Stack Developer",
+        "expertise": "Digital Marketing Expertise",
+        "short_bio": (
+            "Japhes supports EcoFem as a Full-Stack Developer with digital "
+            "marketing expertise."
+        ),
+        "professional_background": (
+            "Brings digital marketing expertise to grow EcoFem's visibility, "
+            "engagement, customer reach, and awareness."
+        ),
+        "contribution": "",
+        "leadership_story": "",
+        "vision_for_ecofem": "",
+        "email": "",
+        "linkedin_url": "https://www.linkedin.com/in/japhes-murithi-79178a329/",
+        "instagram_url": "https://japhes.secora.dev",
+        "twitter_url": "https://x.com/JaphesMurithi",
+        "facebook_url": "https://japhes.secora.dev",
         "is_founder_or_lead": False,
         "is_featured": False,
         "is_active": True,
