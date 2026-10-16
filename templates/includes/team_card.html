@@ -21,6 +21,10 @@
             <a href="{{ member.twitter_url|default:team_page_url }}" class="team-social-link" {% if member.twitter_url %}target="_blank" rel="noopener"{% endif %} aria-label="Twitter for {{ member.full_name }}"><i class="bi bi-twitter-x"></i></a>
             <a href="{{ member.facebook_url|default:team_page_url }}" class="team-social-link" {% if member.facebook_url %}target="_blank" rel="noopener"{% endif %} aria-label="Facebook for {{ member.full_name }}"><i class="bi bi-facebook"></i></a>
         </div>
-        <button type="button" class="arrow-link profile-link-disabled" disabled aria-disabled="true">View profile <i class="bi bi-arrow-up-right"></i></button>
+        {% if member.profile_available %}
+            <a href="{% url 'ecofem:team_detail' member.slug %}" class="arrow-link">View profile <i class="bi bi-arrow-up-right"></i></a>
+        {% else %}
+            <button type="button" class="arrow-link profile-link-disabled" disabled aria-disabled="true">View profile <i class="bi bi-arrow-up-right"></i></button>
+        {% endif %}
     </div>
 </article>

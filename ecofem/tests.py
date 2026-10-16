@@ -146,7 +146,7 @@ class PublicPageTests(SimpleTestCase):
         )
         self.assertContains(
             response,
-            '/static/css/main.css?v=20261015-lavender',
+            '/static/css/main.css?v=20261016-amina-profile',
         )
 
         stylesheet = (
@@ -315,18 +315,42 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(response, SAMPLE_MEMBER["full_name"])
         self.assertContains(response, "/static/images/team/example-member.jpg")
 
-    def test_all_team_profile_paths_are_blocked(self):
-        for member in TEAM_MEMBERS:
+    def test_only_amina_team_profile_is_available(self):
+        amina = next(
+            member for member in TEAM_MEMBERS if member["slug"] == "amina-ndinya"
+        )
+        response = self.client.get(
+            reverse("ecofem:team_detail", args=[amina["slug"]])
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "ecofem/team_detail.html")
+        self.assertContains(response, "Ms. Amina Ndinya")
+        self.assertContains(response, "/static/images/team/amina-ndinya.jpeg")
+        self.assertContains(response, "more than 15 years of experience")
+        self.assertContains(response, "MBA (Strategic Management)")
+        self.assertContains(response, "Bachelor of Commerce (Marketing)")
+        self.assertContains(response, "aminandinya@ttu.ac.ke", count=2)
+        self.assertContains(response, amina["linkedin_url"])
+        self.assertContains(response, escape(amina["google_scholar_url"]))
+        self.assertContains(response, amina["researchgate_url"])
+
+        unavailable_members = [
+            member for member in TEAM_MEMBERS if member["slug"] != "amina-ndinya"
+        ]
+        for member in unavailable_members:
             with self.subTest(member=member["full_name"]):
                 response = self.client.get(f"/team/{member['slug']}/")
                 self.assertEqual(response.status_code, 404)
 
-    def test_team_cards_show_disabled_profile_controls_without_links(self):
+    def test_team_card_enables_only_aminas_profile_link(self):
         response = self.client.get(reverse("ecofem:team_list"))
         self.assertContains(response, "View profile", count=12)
-        self.assertContains(response, 'disabled aria-disabled="true"', count=12)
+        self.assertContains(response, 'disabled aria-disabled="true"', count=11)
+        self.assertContains(response, 'href="/team/amina-ndinya/"', count=1)
         for member in TEAM_MEMBERS:
-            self.assertNotContains(response, f'/team/{member["slug"]}/')
+            if member["slug"] != "amina-ndinya":
+                self.assertNotContains(response, f'/team/{member["slug"]}/')
 
     def test_team_social_icons_fall_back_to_team_page(self):
         response = self.client.get(reverse("ecofem:team_list"))
@@ -334,7 +358,7 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(
             response,
             'href="/team/" class="team-social-link"',
-            count=44,
+            count=43,
         )
         for label in ("LinkedIn", "Instagram", "Twitter", "Facebook"):
             self.assertContains(response, f'aria-label="{label} for', count=12)

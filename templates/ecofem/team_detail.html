@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ member.profile_name|default:member.full_name }}{% endblock %}
+{% block meta_description %}Meet {{ member.profile_name|default:member.full_name }}, {{ member.role }} at EcoFem, and learn about her academic background and professional expertise.{% endblock %}
+{% block og_title %}{{ member.profile_name|default:member.full_name }} | EcoFem Team{% endblock %}
+{% block og_description %}{{ member.short_bio }}{% endblock %}
+
+{% block content %}
+<header class="profile-hero">
+    <div class="container">
+        <a href="{% url 'ecofem:team_list' %}" class="back-link"><i class="bi bi-arrow-left"></i> Back to our team</a>
+        <div class="profile-panel reveal">
+            <div class="row g-0">
+                <div class="col-lg-5">
+                    {% if member.profile_photo %}
+                        <img src="{% static member.profile_photo %}" alt="Portrait of {{ member.full_name }}" class="profile-photo">
+                    {% else %}
+                        <div class="image-placeholder profile-placeholder" role="img" aria-label="Profile photo placeholder for {{ member.full_name }}"><i class="bi bi-person"></i></div>
+                    {% endif %}
+                </div>
+                <div class="col-lg-7">
+                    <div class="profile-heading">
+                        <span class="eyebrow eyebrow-light">Meet our team</span>
+                        <h1>{{ member.profile_name|default:member.full_name }}</h1>
+                        <p class="profile-role">{{ member.role }}</p>
+                        <p class="profile-summary">{{ member.short_bio }}</p>
+                        <div class="profile-expertise">
+                            <i class="bi bi-stars" aria-hidden="true"></i>
+                            <span><small>Areas of expertise</small><strong>{{ member.expertise }}</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="section profile-content">
+    <div class="container">
+        <div class="row g-5 align-items-start">
+            <div class="col-lg-8">
+                <div class="reveal">
+                    <span class="eyebrow">Professional profile</span>
+                    <h2>Teaching, research and business mentorship</h2>
+                    <div class="long-copy">{{ member.professional_background|linebreaks }}</div>
+                </div>
+
+                <div class="profile-facts reveal" aria-label="Professional details">
+                    <article class="profile-fact profile-fact-wide">
+                        <i class="bi bi-building" aria-hidden="true"></i>
+                        <div><span>Current position</span><h3>{{ member.position }}</h3><p>{{ member.organizational_unit }}</p></div>
+                    </article>
+                    <article class="profile-fact">
+                        <i class="bi bi-mortarboard" aria-hidden="true"></i>
+                        <div><span>Qualifications</span><h3>Academic background</h3><ul>{% for qualification in member.qualifications %}<li>{{ qualification }}</li>{% endfor %}</ul></div>
+                    </article>
+                    <article class="profile-fact">
+                        <i class="bi bi-compass" aria-hidden="true"></i>
+                        <div><span>Field</span><h3>Professional focus</h3><p>{{ member.field }}</p></div>
+                    </article>
+                    <article class="profile-fact profile-fact-wide">
+                        <i class="bi bi-lightbulb" aria-hidden="true"></i>
+                        <div><span>Areas of interest</span><h3>Research and teaching interests</h3><p>{{ member.areas_of_interest }}</p></div>
+                    </article>
+                </div>
+
+                {% if member.contribution %}
+                    <div class="contribution-box reveal">
+                        <span class="eyebrow">Her contribution</span>
+                        <h2>What Amina brings to EcoFem</h2>
+                        <p>{{ member.contribution }}</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <aside class="col-lg-4 reveal" aria-label="Contact and professional profiles">
+                <div class="profile-contact">
+                    <span class="eyebrow">Connect</span>
+                    <h2>Find Amina online</h2>
+                    {% if member.email %}<a href="mailto:{{ member.email }}"><i class="bi bi-envelope" aria-hidden="true"></i><span>{{ member.email }}</span></a>{% endif %}
+                    {% if member.linkedin_url %}<a href="{{ member.linkedin_url }}" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i><span>LinkedIn profile</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
+                    {% if member.google_scholar_url %}<a href="{{ member.google_scholar_url }}" target="_blank" rel="noopener"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Google Scholar</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
+                    {% if member.researchgate_url %}<a href="{{ member.researchgate_url }}" target="_blank" rel="noopener"><i class="bi bi-file-earmark-person" aria-hidden="true"></i><span>ResearchGate</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+{% include "includes/get_involved.html" %}
+{% endblock %}

@@ -124,7 +124,7 @@ Check that:
 - `/`, `/about/`, `/innovation/`, `/impact/`, `/team/`, `/updates/` and
   `/contact/` load over HTTPS
 - CSS, JavaScript, favicon and static images load
-- team cards display their disabled View profile controls
+- Amina Ndinya's team card opens her profile and the other View profile controls remain disabled
 - any code-added update detail pages load
 - the mobile menu works
 - the demonstration Contact form validates and displays its success message

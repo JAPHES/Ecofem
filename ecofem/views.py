@@ -52,6 +52,20 @@ def team_list(request):
     return render(request, "ecofem/team_list.html", {"members": _active_team()})
 
 
+def team_detail(request, slug):
+    member = next(
+        (
+            item
+            for item in _active_team()
+            if item.get("slug") == slug and item.get("profile_available", False)
+        ),
+        None,
+    )
+    if member is None:
+        raise Http404("Team profile not found")
+    return render(request, "ecofem/team_detail.html", {"member": member})
+
+
 def update_list(request):
     page_obj = Paginator(_published_updates(), 6).get_page(request.GET.get("page"))
     return render(

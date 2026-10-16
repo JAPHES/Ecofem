@@ -261,28 +261,58 @@ TEAM_MEMBERS = [
     },
     {
         "full_name": "Amina Ndinya",
+        "profile_name": "Ms. Amina Ndinya",
         "slug": "amina-ndinya",
         "profile_photo": "images/team/amina-ndinya.jpeg",
         "role": "Mentor",
-        "expertise": "Strategist and Marketer",
+        "expertise": "Marketing, Strategic Management & Entrepreneurship",
         "short_bio": (
-            "Amina serves as an EcoFem Mentor with strategy and marketing "
-            "expertise."
+            "An educator, researcher and trainer with more than 15 years of "
+            "experience in marketing, strategic management and entrepreneurship."
         ),
         "professional_background": (
-            "Brings entrepreneurship, strategic management, and marketing "
-            "skills and expertise for innovation design, differentiation "
-            "strategy, sustainability intelligence, and environmental "
-            "evaluation."
+            "Ms. Amina Ndinya is an Assistant Lecturer in the Department of "
+            "Business and Management Science at Taita Taveta University, where "
+            "she trains and supervises business students. She is currently "
+            "pursuing a PhD in Entrepreneurship and Small Business at the "
+            "University of Nairobi. She holds an MBA in Strategic Management "
+            "and a Bachelor of Commerce degree in Marketing, both from the "
+            "University of Nairobi. She has more than 15 years of experience "
+            "in teaching, research and training in marketing, strategic "
+            "management and entrepreneurship. She has also lectured at the "
+            "University of Nairobi, the Kenya Institute of Management and "
+            "Kenya Methodist University."
         ),
-        "contribution": "",
+        "qualifications": (
+            "MBA (Strategic Management)",
+            "Bachelor of Commerce (Marketing)",
+        ),
+        "position": "Assistant Lecturer",
+        "organizational_unit": (
+            "Department of Business and Management Science, "
+            "Taita Taveta University"
+        ),
+        "field": "Marketing, Strategic Management and Entrepreneurship",
+        "areas_of_interest": (
+            "Marketing, Strategic Management and Entrepreneurship"
+        ),
+        "contribution": (
+            "Amina brings entrepreneurship, strategic management and marketing "
+            "expertise to EcoFem, supporting innovation design, differentiation "
+            "strategy, sustainability intelligence and environmental evaluation."
+        ),
         "leadership_story": "",
         "vision_for_ecofem": "",
-        "email": "",
-        "linkedin_url": "",
+        "email": "aminandinya@ttu.ac.ke",
+        "linkedin_url": "https://www.linkedin.com/in/amina-ndinya-2a6a6617b",
+        "google_scholar_url": (
+            "https://scholar.google.com/citations?user=I5KV6Q4AAAAJ&hl=en"
+        ),
+        "researchgate_url": "https://www.researchgate.net/profile/Amina-Ndinya",
         "is_founder_or_lead": False,
         "is_featured": False,
         "is_active": True,
+        "profile_available": True,
     },
     {
         "full_name": "Anne Kemunto",

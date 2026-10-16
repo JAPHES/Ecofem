@@ -12,7 +12,7 @@ content is edited in `ecofem/content.py`, while all images are committed under
 ## Pages and features
 
 - Home, About, Innovation, Impact, Team, Updates and Contact pages
-- Code-managed team cards and optional update detail pages
+- Code-managed team cards, selected team profile pages and optional update detail pages
 - Optional code-managed partner and gallery sections
 - Static CSS, JavaScript, brand artwork and content images
 - Responsive Bootstrap 5 design and accessible markup
@@ -127,6 +127,7 @@ TEAM_MEMBERS = [
         "instagram_url": "",
         "twitter_url": "",
         "facebook_url": "",
+        "profile_available": False,
         "leadership_label": "",
         "is_founder_or_lead": False,
         "is_featured": True,
@@ -135,10 +136,11 @@ TEAM_MEMBERS = [
 ]
 ```
 
-Use a unique lowercase slug with hyphens so detail pages can be restored later.
+Use a unique lowercase slug with hyphens for the member's profile URL.
 Set `is_founder_or_lead` to `True` for a confirmed innovation leadership member
 and use `leadership_label` for the public badge text. Public team-detail routes
-are currently disabled, and up to four featured people appear on the homepage.
+are available only when `profile_available` is `True`, and up to four featured
+people appear on the homepage.
 
 Each team card displays LinkedIn, Instagram, Twitter and Facebook icons. An
 empty social URL sends visitors back to the Team page. Replace an empty value

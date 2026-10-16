@@ -1839,6 +1839,13 @@ p:last-child {
     font-weight: 700;
 }
 
+.profile-summary {
+    max-width: 640px;
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.05rem;
+}
+
 .profile-expertise {
     display: flex;
     margin-top: 3rem;
@@ -1862,7 +1869,13 @@ p:last-child {
 .profile-expertise small {
     color: rgba(255, 255, 255, 0.72);
     font-size: 0.69rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+.profile-expertise strong {
+    margin-top: 0.2rem;
+    line-height: 1.45;
 }
 
 .profile-content h2 {
@@ -1872,6 +1885,65 @@ p:last-child {
 .long-copy {
     color: #252525;
     font-size: 1.05rem;
+}
+
+.profile-facts {
+    display: grid;
+    margin-top: 3.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.profile-fact {
+    display: flex;
+    min-width: 0;
+    padding: 1.6rem;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-fact-wide {
+    grid-column: 1 / -1;
+}
+
+.profile-fact > i {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    place-items: center;
+    border-radius: 13px;
+    background: var(--rose-light);
+    color: var(--rose);
+    font-size: 1.15rem;
+}
+
+.profile-fact span {
+    color: var(--rose);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.profile-fact h3 {
+    margin: 0.25rem 0 0.45rem;
+    font-size: 1.08rem;
+}
+
+.profile-fact p,
+.profile-fact ul {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.profile-fact ul {
+    padding-left: 1.15rem;
 }
 
 .contribution-box,
@@ -1918,6 +1990,15 @@ p:last-child {
     font-size: 0.88rem;
     font-weight: 700;
     word-break: break-word;
+}
+
+.profile-contact > a:first-of-type {
+    margin-top: 1.4rem;
+}
+
+.profile-contact > a:hover,
+.profile-contact > a:focus-visible {
+    color: var(--rose-dark);
 }
 
 /* Updates */
@@ -2451,8 +2532,13 @@ textarea.form-control {
     }
 
     .values-grid,
-    .gallery-grid {
+    .gallery-grid,
+    .profile-facts {
         grid-template-columns: 1fr;
+    }
+
+    .profile-fact-wide {
+        grid-column: auto;
     }
 
     .gallery-grid {
