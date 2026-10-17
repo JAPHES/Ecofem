@@ -187,7 +187,7 @@ class CodeManagedContentTests(SimpleTestCase):
             "Yvonne Achieng’": "images/team/yvonne-achieng.jpeg",
             "Koti Matata": "images/team/koti-matata.jpeg",
             "Victor Orwa": "images/team/victor-orwa.jpeg",
-            "Simion Masika": "images/team/simion-masika.jpeg",
+            "Simon Keli Masika": "images/team/simion-masika.jpeg",
             "Milcah Chari": "images/team/milcah-chari.jpeg",
             "Japhes Murithi": "images/team/japhes-murithi.jpeg",
             "Amina Ndinya": "images/team/amina-ndinya.jpeg",
@@ -315,7 +315,7 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(response, SAMPLE_MEMBER["full_name"])
         self.assertContains(response, "/static/images/team/example-member.jpg")
 
-    def test_only_amina_team_profile_is_available(self):
+    def test_amina_and_simon_team_profiles_are_available(self):
         amina = next(
             member for member in TEAM_MEMBERS if member["slug"] == "amina-ndinya"
         )
@@ -335,21 +335,41 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(response, escape(amina["google_scholar_url"]))
         self.assertContains(response, amina["researchgate_url"])
 
+        simon = next(
+            member for member in TEAM_MEMBERS if member["slug"] == "simon-keli-masika"
+        )
+        response = self.client.get(
+            reverse("ecofem:team_detail", args=[simon["slug"]])
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "ecofem/team_detail.html")
+        self.assertContains(response, "Simon Keli Masika")
+        self.assertContains(response, "/static/images/team/simion-masika.jpeg")
+        self.assertContains(response, "Mechanical Engineering Student")
+        self.assertContains(response, "CAD Modelling")
+        self.assertContains(response, "water hyacinth fibres")
+        self.assertContains(response, "simonkeli6386@gmail.com", count=2)
+        self.assertContains(response, "What Simon brings to EcoFem")
+
+        available_slugs = {"amina-ndinya", "simon-keli-masika"}
         unavailable_members = [
-            member for member in TEAM_MEMBERS if member["slug"] != "amina-ndinya"
+            member for member in TEAM_MEMBERS if member["slug"] not in available_slugs
         ]
         for member in unavailable_members:
             with self.subTest(member=member["full_name"]):
                 response = self.client.get(f"/team/{member['slug']}/")
                 self.assertEqual(response.status_code, 404)
 
-    def test_team_card_enables_only_aminas_profile_link(self):
+    def test_team_cards_enable_only_amina_and_simon_profile_links(self):
         response = self.client.get(reverse("ecofem:team_list"))
         self.assertContains(response, "View profile", count=12)
-        self.assertContains(response, 'disabled aria-disabled="true"', count=11)
+        self.assertContains(response, 'disabled aria-disabled="true"', count=10)
         self.assertContains(response, 'href="/team/amina-ndinya/"', count=1)
+        self.assertContains(response, 'href="/team/simon-keli-masika/"', count=1)
+        available_slugs = {"amina-ndinya", "simon-keli-masika"}
         for member in TEAM_MEMBERS:
-            if member["slug"] != "amina-ndinya":
+            if member["slug"] not in available_slugs:
                 self.assertNotContains(response, f'/team/{member["slug"]}/')
 
     def test_team_social_icons_fall_back_to_team_page(self):

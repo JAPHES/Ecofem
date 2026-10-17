@@ -188,6 +188,16 @@ TEAM_MEMBERS = [
     {
         "full_name": "Amina Ndinya",
         "profile_name": "Ms. Amina Ndinya",
+        "profile_first_name": "Amina",
+        "profile_heading": "Teaching, research and business mentorship",
+        "meta_description": (
+            "Meet Ms. Amina Ndinya, Mentor at EcoFem, and learn about her "
+            "academic background and professional expertise."
+        ),
+        "contribution_label": "Her contribution",
+        "contribution_heading": "What Amina brings to EcoFem",
+        "contact_heading": "Find Amina online",
+        "interests_heading": "Research and teaching interests",
         "slug": "amina-ndinya",
         "profile_photo": "images/team/amina-ndinya.jpeg",
         "role": "Mentor",
@@ -291,27 +301,59 @@ TEAM_MEMBERS = [
         "is_active": True,
     },
     {
-        "full_name": "Simion Masika",
-        "slug": "simion-masika",
+        "full_name": "Simon Keli Masika",
+        "profile_first_name": "Simon",
+        "profile_heading": "Engineering ideas for sustainable products",
+        "meta_description": (
+            "Meet Simon Keli Masika, Product Designer at EcoFem, and learn "
+            "about his mechanical design and sustainable innovation interests."
+        ),
+        "contribution_label": "His contribution",
+        "contribution_heading": "What Simon brings to EcoFem",
+        "contact_heading": "Connect with Simon",
+        "interests_heading": "Design and research interests",
+        "slug": "simon-keli-masika",
         "profile_photo": "images/team/simion-masika.jpeg",
-        "role": "Mechanical Engineering",
-        "expertise": "Product Designer",
+        "role": "Product Designer",
+        "expertise": (
+            "Mechanical Design, CAD Modelling, Materials Research and "
+            "Sustainable Innovation"
+        ),
         "short_bio": (
-            "Simion supports EcoFem through mechanical engineering and "
-            "product design."
+            "An aspiring mechanical engineer passionate about engineering "
+            "innovation, sustainable product development and entrepreneurship."
         ),
         "professional_background": (
-            "An expert in prototyping, experimentation, product design, and "
-            "testing for optimal product quality."
+            "Simon Keli Masika is a Mechanical Engineering student at Taita "
+            "Taveta University with interests in mechanical design, materials "
+            "research and sustainable manufacturing. He is part of the EcoFem "
+            "team, contributing to the development of biodegradable sanitary "
+            "pads made from water hyacinth fibres. His interests lie in "
+            "transforming innovative ideas into practical engineering solutions "
+            "that address societal needs while promoting environmental "
+            "sustainability."
         ),
-        "contribution": "",
+        "qualifications": (),
+        "position": "Mechanical Engineering Student",
+        "organizational_unit": "Taita Taveta University",
+        "field": "Mechanical Engineering and Product Design",
+        "areas_of_interest": (
+            "Mechanical design, materials research and sustainable manufacturing"
+        ),
+        "contribution": (
+            "Simon brings engineering knowledge, creativity and problem-solving "
+            "skills to EcoFem, supporting product development and the exploration "
+            "of sustainable materials and manufacturing approaches for affordable, "
+            "environmentally friendly menstrual hygiene products."
+        ),
         "leadership_story": "",
         "vision_for_ecofem": "",
-        "email": "",
+        "email": "simonkeli6386@gmail.com",
         "linkedin_url": "",
         "is_founder_or_lead": False,
         "is_featured": False,
         "is_active": True,
+        "profile_available": True,
     },
     {
         "full_name": "James Indiya",
