@@ -315,7 +315,7 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(response, SAMPLE_MEMBER["full_name"])
         self.assertContains(response, "/static/images/team/example-member.jpg")
 
-    def test_amina_and_simon_team_profiles_are_available(self):
+    def test_completed_team_profiles_are_available(self):
         amina = next(
             member for member in TEAM_MEMBERS if member["slug"] == "amina-ndinya"
         )
@@ -352,7 +352,27 @@ class CodeManagedContentTests(SimpleTestCase):
         self.assertContains(response, "simonkeli6386@gmail.com", count=2)
         self.assertContains(response, "What Simon brings to EcoFem")
 
-        available_slugs = {"amina-ndinya", "simon-keli-masika"}
+        milcah = next(
+            member for member in TEAM_MEMBERS if member["slug"] == "milcah-chari"
+        )
+        response = self.client.get(
+            reverse("ecofem:team_detail", args=[milcah["slug"]])
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "ecofem/team_detail.html")
+        self.assertContains(response, "Milcah Chari")
+        self.assertContains(response, "/static/images/team/milcah-chari.jpeg")
+        self.assertContains(response, "Project Planning and Management")
+        self.assertContains(response, "results-driven project planning")
+        self.assertContains(response, "I bring proven strengths")
+        self.assertContains(response, "What Milcah brings to EcoFem")
+        self.assertNotContains(
+            response,
+            'aria-label="Contact and professional profiles"',
+        )
+
+        available_slugs = {"amina-ndinya", "milcah-chari", "simon-keli-masika"}
         unavailable_members = [
             member for member in TEAM_MEMBERS if member["slug"] not in available_slugs
         ]
@@ -361,13 +381,14 @@ class CodeManagedContentTests(SimpleTestCase):
                 response = self.client.get(f"/team/{member['slug']}/")
                 self.assertEqual(response.status_code, 404)
 
-    def test_team_cards_enable_only_amina_and_simon_profile_links(self):
+    def test_team_cards_enable_only_completed_profile_links(self):
         response = self.client.get(reverse("ecofem:team_list"))
         self.assertContains(response, "View profile", count=12)
-        self.assertContains(response, 'disabled aria-disabled="true"', count=10)
+        self.assertContains(response, 'disabled aria-disabled="true"', count=9)
         self.assertContains(response, 'href="/team/amina-ndinya/"', count=1)
+        self.assertContains(response, 'href="/team/milcah-chari/"', count=1)
         self.assertContains(response, 'href="/team/simon-keli-masika/"', count=1)
-        available_slugs = {"amina-ndinya", "simon-keli-masika"}
+        available_slugs = {"amina-ndinya", "milcah-chari", "simon-keli-masika"}
         for member in TEAM_MEMBERS:
             if member["slug"] not in available_slugs:
                 self.assertNotContains(response, f'/team/{member["slug"]}/')

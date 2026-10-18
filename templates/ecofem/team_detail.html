@@ -38,8 +38,8 @@
 
 <section class="section profile-content">
     <div class="container">
-        <div class="row g-5 align-items-start">
-            <div class="col-lg-8">
+        <div class="row g-5 align-items-start justify-content-center">
+            <div class="{% if member.has_profile_contacts %}col-lg-8{% else %}col-lg-10{% endif %}">
                 <div class="reveal">
                     <span class="eyebrow">Professional profile</span>
                     <h2>{{ member.profile_heading }}</h2>
@@ -49,7 +49,7 @@
                 <div class="profile-facts reveal" aria-label="Professional details">
                     <article class="profile-fact profile-fact-wide">
                         <i class="bi bi-building" aria-hidden="true"></i>
-                        <div><span>Current position</span><h3>{{ member.position }}</h3><p>{{ member.organizational_unit }}</p></div>
+                        <div><span>{{ member.position_label|default:"Current position" }}</span><h3>{{ member.position }}</h3><p>{% if member.position_detail %}{{ member.position_detail }}{% else %}{{ member.organizational_unit }}{% endif %}</p></div>
                     </article>
                     {% if member.qualifications %}
                         <article class="profile-fact">
@@ -76,16 +76,18 @@
                 {% endif %}
             </div>
 
-            <aside class="col-lg-4 reveal" aria-label="Contact and professional profiles">
-                <div class="profile-contact">
-                    <span class="eyebrow">Connect</span>
-                    <h2>{{ member.contact_heading }}</h2>
-                    {% if member.email %}<a href="mailto:{{ member.email }}"><i class="bi bi-envelope" aria-hidden="true"></i><span>{{ member.email }}</span></a>{% endif %}
-                    {% if member.linkedin_url %}<a href="{{ member.linkedin_url }}" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i><span>LinkedIn profile</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
-                    {% if member.google_scholar_url %}<a href="{{ member.google_scholar_url }}" target="_blank" rel="noopener"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Google Scholar</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
-                    {% if member.researchgate_url %}<a href="{{ member.researchgate_url }}" target="_blank" rel="noopener"><i class="bi bi-file-earmark-person" aria-hidden="true"></i><span>ResearchGate</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
-                </div>
-            </aside>
+            {% if member.has_profile_contacts %}
+                <aside class="col-lg-4 reveal" aria-label="Contact and professional profiles">
+                    <div class="profile-contact">
+                        <span class="eyebrow">Connect</span>
+                        <h2>{{ member.contact_heading }}</h2>
+                        {% if member.email %}<a href="mailto:{{ member.email }}"><i class="bi bi-envelope" aria-hidden="true"></i><span>{{ member.email }}</span></a>{% endif %}
+                        {% if member.linkedin_url %}<a href="{{ member.linkedin_url }}" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i><span>LinkedIn profile</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
+                        {% if member.google_scholar_url %}<a href="{{ member.google_scholar_url }}" target="_blank" rel="noopener"><i class="bi bi-journal-text" aria-hidden="true"></i><span>Google Scholar</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
+                        {% if member.researchgate_url %}<a href="{{ member.researchgate_url }}" target="_blank" rel="noopener"><i class="bi bi-file-earmark-person" aria-hidden="true"></i><span>ResearchGate</span><i class="bi bi-arrow-up-right ms-auto" aria-hidden="true"></i></a>{% endif %}
+                    </div>
+                </aside>
+            {% endif %}
         </div>
     </div>
 </section>

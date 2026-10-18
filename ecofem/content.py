@@ -198,6 +198,7 @@ TEAM_MEMBERS = [
         "contribution_heading": "What Amina brings to EcoFem",
         "contact_heading": "Find Amina online",
         "interests_heading": "Research and teaching interests",
+        "has_profile_contacts": True,
         "slug": "amina-ndinya",
         "profile_photo": "images/team/amina-ndinya.jpeg",
         "role": "Mentor",
@@ -277,21 +278,48 @@ TEAM_MEMBERS = [
     },
     {
         "full_name": "Milcah Chari",
+        "profile_first_name": "Milcah",
+        "profile_heading": "Project planning for sustainable growth",
+        "meta_description": (
+            "Milcah Chari is a results-driven project planning and management "
+            "professional supporting effective execution and sustainable growth."
+        ),
+        "contribution_label": "Her contribution",
+        "contribution_heading": "What Milcah brings to EcoFem",
+        "interests_heading": "Delivery and growth strengths",
         "slug": "milcah-chari",
         "profile_photo": "images/team/milcah-chari.jpeg",
-        "role": "Administrator",
-        "expertise": "Business Development Expert",
+        "role": "Project Planning and Management",
+        "expertise": (
+            "Administration, Account Management and Business Development"
+        ),
         "short_bio": (
-            "Milcah serves as EcoFem's Administrator with expertise in "
-            "business development."
+            "I am a results-driven project planning and management professional "
+            "with expertise in administration, account management, and business "
+            "development."
         ),
         "professional_background": (
-            "An administrative account manager who supports scalable project "
-            "implementation through project coordination, stakeholder "
-            "engagement, synthesis of customer insights, and project "
-            "commercialization."
+            "I am a results-driven project planning and management professional "
+            "with expertise in administration, account management, and business "
+            "development."
         ),
-        "contribution": "",
+        "qualifications": (),
+        "position_label": "Professional field",
+        "position": "Project Planning and Management",
+        "position_detail": (
+            "Administration, account management and business development"
+        ),
+        "field": "Administration, Account Management and Business Development",
+        "areas_of_interest": (
+            "Project coordination, stakeholder engagement, customer insights "
+            "and commercialization"
+        ),
+        "contribution": (
+            "I bring proven strengths in project coordination, stakeholder "
+            "engagement, customer insights, and commercialization to help EcoFem "
+            "execute initiatives effectively, expand its reach, strengthen "
+            "partnerships, and drive sustainable long-term growth."
+        ),
         "leadership_story": "",
         "vision_for_ecofem": "",
         "email": "",
@@ -299,6 +327,7 @@ TEAM_MEMBERS = [
         "is_founder_or_lead": False,
         "is_featured": False,
         "is_active": True,
+        "profile_available": True,
     },
     {
         "full_name": "Simon Keli Masika",
@@ -312,6 +341,7 @@ TEAM_MEMBERS = [
         "contribution_heading": "What Simon brings to EcoFem",
         "contact_heading": "Connect with Simon",
         "interests_heading": "Design and research interests",
+        "has_profile_contacts": True,
         "slug": "simon-keli-masika",
         "profile_photo": "images/team/simion-masika.jpeg",
         "role": "Product Designer",

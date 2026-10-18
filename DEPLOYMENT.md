@@ -124,7 +124,7 @@ Check that:
 - `/`, `/about/`, `/innovation/`, `/impact/`, `/team/`, `/updates/` and
   `/contact/` load over HTTPS
 - CSS, JavaScript, favicon and static images load
-- Amina Ndinya's and Simon Keli Masika's team cards open their profiles, while the other View profile controls remain disabled
+- Amina Ndinya's, Milcah Chari's and Simon Keli Masika's team cards open their profiles, while the other View profile controls remain disabled
 - any code-added update detail pages load
 - the mobile menu works
 - the demonstration Contact form validates and displays its success message
